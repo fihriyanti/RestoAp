@@ -14,6 +14,9 @@ export default class DetailsMenuScreen extends Component {
         this.setState({ count: this.state.count + 1 })
     }
     kurangJumlah = () => {
+        if (this.state.count <= 0){
+            this.state.count=1
+        }
         this.setState({ count: this.state.count - 1 })
     }
 
@@ -34,7 +37,7 @@ export default class DetailsMenuScreen extends Component {
                     </View>
                     <View>
                         <Image source={Images.ayamrica} style={styles.logo} />
-                        <Button full rounded style={styles.btn}>
+                        <Button full style={styles.btn}>
                             <Text style={styles.txtBtn}>TERSEDIA</Text>
                         </Button>
                         <View style={styles.body}>
@@ -56,7 +59,7 @@ export default class DetailsMenuScreen extends Component {
                                         >
                                             <Icon style={styles.PM} type='FontAwesome5' name='minus' />
                                         </Button>
-                                        <Button bordered>
+                                        <Button transparent>
                                             <Text style={styles.jml}>{this.state.count}</Text>
                                         </Button>
                                         <Button bordered style={styles.btnPM}

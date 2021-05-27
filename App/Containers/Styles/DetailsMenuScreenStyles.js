@@ -25,8 +25,7 @@ export default StyleSheet.create({
     backgroundColor: 'green',
     marginTop: 10,
     marginHorizontal: 10,
-    padding: 20,
-    alignSelf: 'center'
+    borderRadius: 10
   },
   txtBtn: {
     color: 'white',
@@ -64,9 +63,6 @@ export default StyleSheet.create({
   },
   btnCart: {
     backgroundColor: '#1565c0',
-    // padding: 10,
-    // marginTop: 10,
-    // alignSelf: 'center',
     position: 'absolute',
     bottom: 0,
     right: 0,
@@ -80,6 +76,7 @@ export default StyleSheet.create({
   },
   btnPM: {
     borderColor: 'black',
+    borderRadius: 10
   },
   PM : {
     color: 'grey',
