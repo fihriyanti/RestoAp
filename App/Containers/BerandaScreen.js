@@ -23,7 +23,7 @@ export default class BerandaScreen extends Component {
                 <Text style={styles.txtSign}>RESERVASI</Text>
               </Button>
               <Button rounded bordered
-                onPress={() => this.props.navigation.navigate('MenuScreen')}
+                onPress={() => this.props.navigation.navigate('MenuTabNav')}
                 style={styles.btnSignUp}>
                 <Text style={styles.txtSignUp}>ORDER MENU</Text>
               </Button>

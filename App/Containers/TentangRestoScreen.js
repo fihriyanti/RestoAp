@@ -4,15 +4,14 @@ import { Button } from 'native-base'
 import { Images } from '../Themes'
 
 // Styles
-import styles from './Styles/BerandaScreenStyles'
+import styles from './Styles/TentangRestoScreenStyles'
 
-export default class AkunScreen extends Component {
+export default class TentangRestoScreen extends Component {
   render() {
     return (
       <View style={styles.mainContainer}>
         <View style={styles.container}>
-          <View 
-          // animation='fadeInDownBig'
+          <View
           style={styles.centered}>
             <Image source={Images.logoApp} style={styles.logo} />
           </View>
@@ -22,6 +21,11 @@ export default class AkunScreen extends Component {
                 onPress={() => this.props.navigation.navigate('ReservasiScreen')}
                 style={styles.btnSign}>
                 <Text style={styles.txtSign}>RESERVASI</Text>
+              </Button>
+              <Button rounded bordered
+                onPress={() => this.props.navigation.navigate('MenuTabNav')}
+                style={styles.btnSignUp}>
+                <Text style={styles.txtSignUp}>ORDER MENU</Text>
               </Button>
             </View>
           </View>

@@ -1,21 +1,19 @@
 import { createAppContainer } from 'react-navigation'
-import Beranda from '../Containers/BerandaScreen'
-import Akun from '../Containers/AkunScreen'
-import Tentang from '../Containers/TentangRestoScreen'
+import Makanan from './MenuMakananScreen'
+import Minuman from './MenuMinumanScreen'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
-import FontAwesome5 from 'react-native-vector-icons'
+import Ionicons from 'react-native-vector-icons'
 
 export default createAppContainer(
     createBottomTabNavigator(
         {
-            Beranda: { 
-                screen: Beranda,
+            Makanan: { 
+                screen: Makanan,
             },
-            Akun: { screen: Akun },
-            Tentang: { screen: Tentang },
+            Minuman: { screen: Minuman },
         },
         {
-            initialRouteName: 'Beranda',
+            initialRouteName: 'Makanan',
             activeColor: '#1565c0'
         },
         {
@@ -23,23 +21,20 @@ export default createAppContainer(
                 tabBarIcon: ({ focused, horizontal, tintColor }) => {
                     const { routeName } = navigation.state;
                     let iconName;
-                    if (routeName === 'Beranda') {
+                    if (routeName === 'Makanan') {
                         iconName = focused
-                            ? 'home'
-                            : 'home';
-                    } else if (routeName === 'Akun') {
-                        iconName = focused ? 'ios-person-circle' : 'user-o';
-                    } else if (routeName === 'Tentang') {
+                            ? 'ios-home-sharp'
+                            : 'ios-home-outline';
+                    } else if (routeName === 'Minuman') {
                         iconName = focused ? 'ios-person-circle' : 'user-o';
                     }
-                    return <FontAwesome5 name={iconName} size={25} color={tintColor} />;
+                    return <Ionicons name={iconName} size={25} color={tintColor} />;
                 },
             }),
             tabBarOptions: {
                 activeTintColor: 'black',
                 inactiveTintColor: 'gray',
             },
-            showIcon: true,
         },
 
     )

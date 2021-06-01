@@ -61,5 +61,18 @@ export default StyleSheet.create({
     icon: {
         color: '#1565c0',
         fontSize: 25
-    }
+    },
+    modal: {
+        justifyContent: 'center',
+        backgroundColor: '#fff',
+        borderRadius: 20,
+        marginLeft: 20,
+        marginRight: 20,
+        padding: 10
+    },
+    bgModal: {
+        backgroundColor: '#9e9e9eaa',
+        flex: 1,
+        justifyContent: 'center',
+    },
 })

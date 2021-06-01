@@ -3,11 +3,12 @@ import { createStackNavigator } from 'react-navigation-stack'
 import LaunchScreen from './App/Containers/LaunchScreen'
 import LoginScreen from './App/Containers/LoginScreen'
 import SignUpScreen from './App/Containers/SignUpScreen'
-// import BerandaTabNav from './App/Containers/BerandaTabNav'
-import BerandaScreen from './App/Containers/BerandaScreen'
-import MenuScreen from './App/Containers/MenuScreen'
+import BerandaTabNav from './App/Containers/BerandaTabNav'
+// import BerandaScreen from './App/Containers/BerandaScreen'
+// import MenuScreen from './App/Containers/MenuScreen'
 import DetailsMenuScreen from './App/Containers/DetailsMenuScreen'
 import ReservasiScreen from './App/Containers/ReservasiScreen'
+import MenuTabNav from './App/Containers/MenuTabNav'
 
 import styles from './App/NavigationStyles'
 
@@ -15,11 +16,12 @@ const PrimaryNav = createStackNavigator({
   LaunchScreen: { screen: LaunchScreen },
   LoginScreen: { screen: LoginScreen },
   SignUpScreen: { screen: SignUpScreen },
-  // BerandaTabNav: { screen: BerandaTabNav },
-  BerandaScreen: { screen: BerandaScreen },
-  MenuScreen: { screen : MenuScreen },
+  BerandaTabNav: { screen: BerandaTabNav },
+  // BerandaScreen: { screen: BerandaScreen },
+  // MenuScreen: { screen : MenuScreen },
   DetailsMenuScreen: { screen: DetailsMenuScreen },
-  ReservasiScreen: { screen: ReservasiScreen }
+  ReservasiScreen: { screen: ReservasiScreen },
+  MenuTabNav: { screen : MenuTabNav }
 }, {
     headerMode: 'none',
     initialRouteName: 'LaunchScreen',

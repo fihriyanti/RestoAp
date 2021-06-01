@@ -33,7 +33,7 @@ export default class LoginScreen extends Component {
                 <Icon type='Ionicons' name='eye-off-outline' />
               </Item>
               <Button rounded
-                onPress={() => this.props.navigation.navigate('BerandaScreen')}
+                onPress={() => this.props.navigation.navigate('BerandaTabNav')}
                 style={styles.btnSign}>
                 <Text style={styles.txtSign}>SIGN IN</Text>
               </Button>

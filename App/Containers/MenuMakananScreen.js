@@ -4,10 +4,10 @@ import { Body, Card, CardItem, Icon } from 'native-base'
 import { Images } from '../Themes'
 
 // Styles
-import styles from './Styles/MenuScreenStyles'
+import styles from './Styles/MenuMakananScreenStyles'
 import { TouchableHighlight } from 'react-native-gesture-handler'
 
-export default class MenuScreen extends Component {
+export default class MenuMakananScreen extends Component {
   render() {
     return (
       <View style={styles.mainContainer}>
