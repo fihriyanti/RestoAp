@@ -6,6 +6,7 @@ import { Images } from '../Themes'
 // Styles
 import styles from './Styles/MenuMinumanScreenStyles'
 import { TouchableHighlight } from 'react-native-gesture-handler'
+import { ScrollView } from 'react-native'
 
 export default class MenuMinumanScreen extends Component {
   render() {
@@ -23,20 +24,39 @@ export default class MenuMinumanScreen extends Component {
               />
             </View>
           </View>
-          <View style={styles.body}>
-            <View style={styles.lineCard}>
-              <TouchableHighlight
-                underlayColor='#1565c0'
-                onPress={() => this.props.navigation.navigate('DetailsMenuScreen')}
-              >
+          <ScrollView scrollEnabled={false}>
+            <View style={styles.body}>
+              <View style={styles.lineCard}>
+                <TouchableHighlight
+                  underlayColor='#1565c0'
+                  onPress={() => this.props.navigation.navigate('DetailsMenuScreen')}
+                >
+                  <Card style={styles.card}>
+                    <CardItem cardBody>
+                      <Image source={Images.cafelatte} style={styles.logo} />
+                    </CardItem>
+                    <CardItem>
+                      <Body>
+                        <Text style={styles.namaMenu}>Coffee Latte</Text>
+                        <Text style={styles.hargaMenu}>Rp. 23.000</Text>
+                        <View style={styles.review}>
+                          <Icon type='Entypo' name='star' style={styles.star} />
+                          <Icon type='Entypo' name='star' style={styles.star} />
+                          <Icon type='Entypo' name='star' style={styles.star} />
+                          <Icon type='Entypo' name='star' style={styles.star} />
+                        </View>
+                      </Body>
+                    </CardItem>
+                  </Card>
+                </TouchableHighlight>
                 <Card style={styles.card}>
                   <CardItem cardBody>
-                    <Image source={Images.cafelatte} style={styles.logo} />
+                    <Image source={Images.icechocolate} style={styles.logo} />
                   </CardItem>
                   <CardItem>
                     <Body>
-                      <Text style={styles.namaMenu}>Coffee Latte</Text>
-                      <Text style={styles.hargaMenu}>Rp. 23.000</Text>
+                      <Text style={styles.namaMenu}>Ice Chocolate</Text>
+                      <Text style={styles.hargaMenu}>Rp. 26.000</Text>
                       <View style={styles.review}>
                         <Icon type='Entypo' name='star' style={styles.star} />
                         <Icon type='Entypo' name='star' style={styles.star} />
@@ -46,62 +66,45 @@ export default class MenuMinumanScreen extends Component {
                     </Body>
                   </CardItem>
                 </Card>
-              </TouchableHighlight>
-              <Card style={styles.card}>
-                <CardItem cardBody>
-                  <Image source={Images.icechocolate} style={styles.logo} />
-                </CardItem>
-                <CardItem>
-                  <Body>
-                    <Text style={styles.namaMenu}>Ice Chocolate</Text>
-                    <Text style={styles.hargaMenu}>Rp. 26.000</Text>
-                    <View style={styles.review}>
-                      <Icon type='Entypo' name='star' style={styles.star} />
-                      <Icon type='Entypo' name='star' style={styles.star} />
-                      <Icon type='Entypo' name='star' style={styles.star} />
-                      <Icon type='Entypo' name='star' style={styles.star} />
-                    </View>
-                  </Body>
-                </CardItem>
-              </Card>
+              </View>
+              <View style={styles.lineCard}>
+                <Card style={styles.card}>
+                  <CardItem cardBody>
+                    <Image source={Images.jusalpukat} style={styles.logo} />
+                  </CardItem>
+                  <CardItem>
+                    <Body>
+                      <Text style={styles.namaMenu}>Jus Alpukat</Text>
+                      <Text style={styles.hargaMenu}>Rp. 17.000</Text>
+                      <View style={styles.review}>
+                        <Icon type='Entypo' name='star' style={styles.star} />
+                        <Icon type='Entypo' name='star' style={styles.star} />
+                        <Icon type='Entypo' name='star' style={styles.star} />
+                        <Icon type='Entypo' name='star' style={styles.star} />
+                      </View>
+                    </Body>
+                  </CardItem>
+                </Card>
+                <Card style={styles.card}>
+                  <CardItem cardBody>
+                    <Image source={Images.lemontea} style={styles.logo} />
+                  </CardItem>
+                  <CardItem>
+                    <Body>
+                      <Text style={styles.namaMenu}>Lemon Tea</Text>
+                      <Text style={styles.hargaMenu}>Rp. 16.000</Text>
+                      <View style={styles.review}>
+                        <Icon type='Entypo' name='star' style={styles.star} />
+                        <Icon type='Entypo' name='star' style={styles.star} />
+                        <Icon type='Entypo' name='star' style={styles.star} />
+                        <Icon type='Entypo' name='star' style={styles.star} />
+                      </View>
+                    </Body>
+                  </CardItem>
+                </Card>
+              </View>
             </View>
-            <View style={styles.lineCard}>
-              <Card style={styles.card}>
-                <CardItem cardBody>
-                  <Image source={Images.jusalpukat} style={styles.logo} />
-                </CardItem>
-                <CardItem>
-                  <Body>
-                    <Text style={styles.namaMenu}>Jus Alpukat</Text>
-                    <Text style={styles.hargaMenu}>Rp. 17.000</Text>
-                    <View style={styles.review}>
-                      <Icon type='Entypo' name='star' style={styles.star} />
-                      <Icon type='Entypo' name='star' style={styles.star} />
-                      <Icon type='Entypo' name='star' style={styles.star} />
-                      <Icon type='Entypo' name='star' style={styles.star} />
-                    </View>
-                  </Body>
-                </CardItem>
-              </Card>
-              <Card style={styles.card}>
-                <CardItem cardBody>
-                  <Image source={Images.lemontea} style={styles.logo} />
-                </CardItem>
-                <CardItem>
-                  <Body>
-                    <Text style={styles.namaMenu}>Lemon Tea</Text>
-                    <Text style={styles.hargaMenu}>Rp. 16.000</Text>
-                    <View style={styles.review}>
-                      <Icon type='Entypo' name='star' style={styles.star} />
-                      <Icon type='Entypo' name='star' style={styles.star} />
-                      <Icon type='Entypo' name='star' style={styles.star} />
-                      <Icon type='Entypo' name='star' style={styles.star} />
-                    </View>
-                  </Body>
-                </CardItem>
-              </Card>
-            </View>
-          </View>
+          </ScrollView>
         </View>
       </View>
     )

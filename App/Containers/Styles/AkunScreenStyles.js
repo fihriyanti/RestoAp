@@ -5,27 +5,45 @@ export default StyleSheet.create({
   ...ApplicationStyles.screen,
   container: {
     flex: 1,
+    backgroundColor: '#1565c0',
   },
   logo: {
-    marginTop: Metrics.doubleSection,
-    height: Metrics.images.ikon,
-    width: Metrics.images.ikon,
-    resizeMode: 'contain'
+    height: Metrics.images.profile,
+    width: Metrics.images.profile,
+    borderRadius: 70
+  },
+  set: {
+    color: 'white',
+    fontSize: 32,
+    alignSelf: 'flex-end',
+    marginTop: 10,
+    marginRight: 10
   },
   centered: {
     backgroundColor: '#1565c0',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 120,
+    paddingVertical: 30,
     paddingHorizontal: 20,
-    borderBottomRightRadius: 30,
-    borderBottomLeftRadius: 30
+  },
+  nama: {
+    marginTop: 10,
+    fontSize: 20,
+    color: 'white',
+    fontWeight: 'bold'
+  },
+  username: {
+    fontSize: 15,
+    color: 'white',
+    // fontWeight: 'bold'
   },
   footer: {
     flex: 1,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
     backgroundColor: 'white',
     paddingHorizontal: 20,
-    paddingVertical: 50,
+    paddingVertical: 20,
   },
   btnSign: {
     marginBottom: 20,
@@ -35,16 +53,6 @@ export default StyleSheet.create({
   },
   txtSign: {
     color: 'white',
-    fontSize: 20,
-    fontWeight: 'bold'
-  },
-  btnSignUp: {
-    alignSelf: 'center',
-    paddingHorizontal: 38,
-    borderColor: '#1565c0'
-  },
-  txtSignUp: {
-    color: '#1565c0',
     fontSize: 20,
     fontWeight: 'bold'
   },
