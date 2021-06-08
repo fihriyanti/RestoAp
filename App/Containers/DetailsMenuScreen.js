@@ -27,7 +27,7 @@ export default class DetailsMenuScreen extends Component {
                     <View style={styles.header}>
                         <Left>
                             <Icon style={styles.back} type='AntDesign' name='arrowleft'
-                                onPress={() => this.props.navigation.navigate('MenuScreen')}
+                                onPress={() => this.props.navigation.navigate('MenuTabNav')}
                             />
                         </Left>
                         <Body>

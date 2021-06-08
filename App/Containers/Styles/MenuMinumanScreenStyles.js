@@ -13,10 +13,11 @@ export default StyleSheet.create({
   },
   header: {
     backgroundColor: '#1565c0',
-    alignItems: 'center',
-    justifyContent: 'center',
     paddingVertical: 20,
     paddingHorizontal: 20,
+  },
+  back: {
+    color: 'white',
   },
   body: {
     paddingHorizontal: 20,
@@ -51,8 +52,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around'
   },
-  star: { 
-    fontSize: 20, 
-    color: '#ffd600' 
+  star: {
+    fontSize: 20,
+    color: '#ffd600'
   },
 })

@@ -1,22 +1,17 @@
+import React from 'react'
 import { createAppContainer } from 'react-navigation'
 import Beranda from '../Containers/BerandaScreen'
 import Akun from '../Containers/AkunScreen'
 import Tentang from '../Containers/TentangRestoScreen'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
-import FontAwesome5 from 'react-native-vector-icons'
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
 export default createAppContainer(
     createBottomTabNavigator(
         {
-            Beranda: { 
-                screen: Beranda,
-            },
-            Akun: { screen: Akun },
-            Tentang: { screen: Tentang },
-        },
-        {
-            initialRouteName: 'Beranda',
-            activeColor: '#1565c0'
+            Beranda: Beranda,
+            Akun: Akun,
+            Tentang: Tentang
         },
         {
             defaultNavigationOptions: ({ navigation }) => ({
@@ -28,16 +23,16 @@ export default createAppContainer(
                             ? 'home'
                             : 'home';
                     } else if (routeName === 'Akun') {
-                        iconName = focused ? 'ios-person-circle' : 'user-o';
+                        iconName = focused ? 'user' : 'user';
                     } else if (routeName === 'Tentang') {
-                        iconName = focused ? 'ios-person-circle' : 'user-o';
+                        iconName = focused ? 'info-circle' : 'info-circle';
                     }
-                    return <FontAwesome5 name={iconName} size={25} color={tintColor} />;
+                    return <FontAwesome5 name={iconName} size={28} color={tintColor} />;
                 },
             }),
             tabBarOptions: {
-                activeTintColor: 'black',
-                inactiveTintColor: 'gray',
+                activeTintColor: '#1565c0',
+                inactiveTintColor: '#707070',
             },
             showIcon: true,
         },

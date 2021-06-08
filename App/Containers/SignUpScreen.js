@@ -3,6 +3,7 @@ import { Image, View, Text } from 'react-native'
 import { Item, Input, Icon, Button } from 'native-base'
 import { Images } from '../Themes'
 
+import * as Animatable from 'react-native-animatable';
 
 // Styles
 import styles from './Styles/SignUpScreenStyles'
@@ -17,8 +18,8 @@ export default class SignUpScreen extends Component {
               // animation='bounceIn'
               source={Images.logoApp} style={styles.logo} />
           </View>
-          <View
-            // animation='fadeInUpBig'
+          <Animatable.View
+            animation='fadeInUpBig'
             style={styles.footer}>
             <Text style={styles.header}>SIGN UP</Text>
             <View style={styles.form}>
@@ -44,7 +45,7 @@ export default class SignUpScreen extends Component {
                 <Text style={styles.txtSign}>SIGN UP</Text>
               </Button>
             </View>
-          </View>
+          </Animatable.View>
         </View>
       </View>
     )

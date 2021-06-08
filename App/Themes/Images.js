@@ -7,6 +7,11 @@ const images = {
   nasikambing: require('../Images/nasigorengkambing.jpg'),
   miejawa: require('../Images/miegorengjawa.jpg'),
   logoApp: require('../Images/logol.png'),
+  cafelatte: require('../Images/cafelatte.jpg'),
+  icechocolate: require('../Images/icechocolate.jpg'),
+  jusalpukat: require('../Images/jusalpukat.jpg'),
+  lemontea: require('../Images/lemontea.jpg'),
+  strawberrymilkshake: require('../Images/strawberrymilkshake.jpg'),
 }
 
 export default images

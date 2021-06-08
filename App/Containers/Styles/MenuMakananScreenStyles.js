@@ -13,10 +13,11 @@ export default StyleSheet.create({
   },
   header: {
     backgroundColor: '#1565c0',
-    alignItems: 'center',
-    justifyContent: 'center',
     paddingVertical: 20,
     paddingHorizontal: 20,
+  },
+  back: {
+    color: 'white',
   },
   body: {
     paddingHorizontal: 20,

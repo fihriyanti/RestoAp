@@ -13,7 +13,15 @@ export default class MenuMinumanScreen extends Component {
       <View style={styles.mainContainer}>
         <View style={styles.container}>
           <View style={styles.header}>
-            <Text style={styles.txtHeader}>D'Fas To</Text>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+              <Icon style={styles.back} type='AntDesign' name='arrowleft'
+                onPress={() => this.props.navigation.navigate('BerandaTabNav')}
+              />
+              <Text style={styles.txtHeader}>D'Fas To</Text>
+              <Icon style={styles.back} type='FontAwesome5' name='shopping-cart'
+                onPress={() => this.props.navigation.navigate('KeranjangScreen')}
+              />
+            </View>
           </View>
           <View style={styles.body}>
             <View style={styles.lineCard}>
@@ -23,12 +31,12 @@ export default class MenuMinumanScreen extends Component {
               >
                 <Card style={styles.card}>
                   <CardItem cardBody>
-                    <Image source={Images.ayamrica} style={styles.logo} />
+                    <Image source={Images.cafelatte} style={styles.logo} />
                   </CardItem>
                   <CardItem>
                     <Body>
-                      <Text style={styles.namaMenu}>Ayam Rica</Text>
-                      <Text style={styles.hargaMenu}>Rp. 18.000</Text>
+                      <Text style={styles.namaMenu}>Coffee Latte</Text>
+                      <Text style={styles.hargaMenu}>Rp. 23.000</Text>
                       <View style={styles.review}>
                         <Icon type='Entypo' name='star' style={styles.star} />
                         <Icon type='Entypo' name='star' style={styles.star} />
@@ -41,12 +49,12 @@ export default class MenuMinumanScreen extends Component {
               </TouchableHighlight>
               <Card style={styles.card}>
                 <CardItem cardBody>
-                  <Image source={Images.capcay} style={styles.logo} />
+                  <Image source={Images.icechocolate} style={styles.logo} />
                 </CardItem>
                 <CardItem>
                   <Body>
-                    <Text style={styles.namaMenu}>Capcay</Text>
-                    <Text style={styles.hargaMenu}>Rp. 15.000</Text>
+                    <Text style={styles.namaMenu}>Ice Chocolate</Text>
+                    <Text style={styles.hargaMenu}>Rp. 26.000</Text>
                     <View style={styles.review}>
                       <Icon type='Entypo' name='star' style={styles.star} />
                       <Icon type='Entypo' name='star' style={styles.star} />
@@ -60,12 +68,12 @@ export default class MenuMinumanScreen extends Component {
             <View style={styles.lineCard}>
               <Card style={styles.card}>
                 <CardItem cardBody>
-                  <Image source={Images.nasikambing} style={styles.logo} />
+                  <Image source={Images.jusalpukat} style={styles.logo} />
                 </CardItem>
                 <CardItem>
                   <Body>
-                    <Text style={styles.namaMenu}>Nasi Goreng Kambing</Text>
-                    <Text style={styles.hargaMenu}>Rp. 25.000</Text>
+                    <Text style={styles.namaMenu}>Jus Alpukat</Text>
+                    <Text style={styles.hargaMenu}>Rp. 17.000</Text>
                     <View style={styles.review}>
                       <Icon type='Entypo' name='star' style={styles.star} />
                       <Icon type='Entypo' name='star' style={styles.star} />
@@ -77,12 +85,12 @@ export default class MenuMinumanScreen extends Component {
               </Card>
               <Card style={styles.card}>
                 <CardItem cardBody>
-                  <Image source={Images.miejawa} style={styles.logo} />
+                  <Image source={Images.lemontea} style={styles.logo} />
                 </CardItem>
                 <CardItem>
                   <Body>
-                    <Text style={styles.namaMenu}>Mie Goreng Jawa</Text>
-                    <Text style={styles.hargaMenu}>Rp. 15.000</Text>
+                    <Text style={styles.namaMenu}>Lemon Tea</Text>
+                    <Text style={styles.hargaMenu}>Rp. 16.000</Text>
                     <View style={styles.review}>
                       <Icon type='Entypo' name='star' style={styles.star} />
                       <Icon type='Entypo' name='star' style={styles.star} />

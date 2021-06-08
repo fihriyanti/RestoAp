@@ -13,7 +13,15 @@ export default class MenuMakananScreen extends Component {
       <View style={styles.mainContainer}>
         <View style={styles.container}>
           <View style={styles.header}>
-            <Text style={styles.txtHeader}>D'Fas To</Text>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+              <Icon style={styles.back} type='AntDesign' name='arrowleft'
+                onPress={() => this.props.navigation.navigate('BerandaTabNav')}
+              />
+              <Text style={styles.txtHeader}>D'Fas To</Text>
+              <Icon style={styles.back} type='FontAwesome5' name='shopping-cart'
+                onPress={() => this.props.navigation.navigate('KeranjangScreen')}
+              />
+            </View>
           </View>
           <View style={styles.body}>
             <View style={styles.lineCard}>

@@ -158,7 +158,7 @@ export default class ReservasiScreen extends Component {
                             <DateTimePickerModal
                                 isVisible={this.showDatePicker}
                                 mode="time"
-                            // onConfirm={handleConfirm}
+                                // onConfirm={console.log(time)}
                             // onCancel={hideDatePicker}
                             />
                             <Button onPress={() => this.setState({ show1: false })}>
