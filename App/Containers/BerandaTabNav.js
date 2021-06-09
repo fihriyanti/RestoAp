@@ -23,7 +23,7 @@ export default createAppContainer(
                             ? 'home'
                             : 'home';
                     } else if (routeName === 'Akun') {
-                        iconName = focused ? 'user' : 'user';
+                        iconName = focused ? 'user-alt' : 'user-alt';
                     } else if (routeName === 'Tentang') {
                         iconName = focused ? 'info-circle' : 'info-circle';
                     }

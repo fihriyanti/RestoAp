@@ -15,9 +15,15 @@ export default StyleSheet.create({
   set: {
     color: 'white',
     fontSize: 32,
-    alignSelf: 'flex-end',
     marginTop: 10,
-    marginRight: 10
+    marginRight: 10,
+    marginLeft: 10
+  },
+  set1: {
+    color: 'white',
+    fontSize: 22,
+    marginTop: 10,
+    marginRight: 10,
   },
   centered: {
     backgroundColor: '#1565c0',
@@ -25,6 +31,17 @@ export default StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 30,
     paddingHorizontal: 20,
+  },
+  btnGantiProfile: {
+    alignSelf: 'center', 
+    marginTop: 10, 
+    backgroundColor: 'white', 
+    padding: 10,
+    borderColor: '#757575'
+  },
+  txtGantiProfile : {
+    color: '#1565c0',
+    fontSize: 15
   },
   nama: {
     marginTop: 10,

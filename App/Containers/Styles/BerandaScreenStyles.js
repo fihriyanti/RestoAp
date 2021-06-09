@@ -5,6 +5,7 @@ export default StyleSheet.create({
   ...ApplicationStyles.screen,
   container: {
     flex: 1,
+    backgroundColor: 'white',
   },
   logo: {
     marginTop: Metrics.doubleSection,
