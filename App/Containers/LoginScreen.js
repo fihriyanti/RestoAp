@@ -12,16 +12,16 @@ export default class LoginScreen extends Component {
   render() {
     return (
       <View style={styles.mainContainer}>
-        <ScrollView>
-          <View style={styles.container}>
-            <View style={styles.centered}>
-              <Image
-                // animation='bounceIn'
-                source={Images.logoApp} style={styles.logo} />
-            </View>
-            <Animatable.View
-              animation='fadeInUpBig'
-              style={styles.footer}>
+        <View style={styles.container}>
+          <View style={styles.centered}>
+            <Image
+              // animation='bounceIn'
+              source={Images.logoApp} style={styles.logo} />
+          </View>
+          <Animatable.View
+            animation='fadeInUpBig'
+            style={styles.footer}>
+            <ScrollView>
               <Text style={styles.header}>SIGN IN</Text>
               <View style={styles.form}>
                 <Text style={styles.label}>Username</Text>
@@ -47,9 +47,9 @@ export default class LoginScreen extends Component {
                   <Text style={styles.txtSignUp}>SIGN UP</Text>
                 </Button>
               </View>
-            </Animatable.View>
-          </View>
-        </ScrollView>
+            </ScrollView>
+          </Animatable.View>
+        </View>
       </View>
     )
   }

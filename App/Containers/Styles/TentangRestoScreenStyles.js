@@ -7,43 +7,20 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
-  logo: {
-    height: Metrics.images.ikon,
-    width: Metrics.images.ikon,
-    resizeMode: 'contain'
+  dotView: {
+    flexDirection: 'row', 
+    position: 'absolute', 
+    bottom: 0, 
+    alignSelf: 'center'
   },
-  centered: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 80,
-    paddingHorizontal: 20,
+  dot: {
+    color: '#757575',
+    margin: 3,
+    fontSize: 18,
   },
-  footer: {
-    flex: 1,
-    backgroundColor: 'white',
-    paddingHorizontal: 20,
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30
-  },
-  btnSign: {
-    marginBottom: 20,
-    backgroundColor: '#1565c0',
-    alignSelf: 'center',
-    paddingHorizontal: 50
-  },
-  txtSign: {
+  Activedot: {
     color: 'white',
-    fontSize: 20,
-    fontWeight: 'bold'
-  },
-  btnSignUp: {
-    alignSelf: 'center',
-    paddingHorizontal: 38,
-    borderColor: '#1565c0'
-  },
-  txtSignUp: {
-    color: '#1565c0',
-    fontSize: 20,
-    fontWeight: 'bold'
-  },
+    margin: 3,
+    fontSize: 18,
+  },  
 })

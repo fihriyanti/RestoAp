@@ -8,7 +8,6 @@ export default StyleSheet.create({
     backgroundColor: 'white',
   },
   logo: {
-    marginTop: Metrics.doubleSection,
     height: Metrics.images.ikon,
     width: Metrics.images.ikon,
     resizeMode: 'contain'
