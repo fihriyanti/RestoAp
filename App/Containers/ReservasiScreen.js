@@ -7,6 +7,7 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker'
 
 // Styles
 import styles from './Styles/ReservasiScreenStyles'
+import { ScrollView } from 'react-native'
 
 export default class ReservasiScreen extends Component {
     constructor(props) {
@@ -14,6 +15,7 @@ export default class ReservasiScreen extends Component {
         this.state = {
             show: false,
             show1: false,
+            show3: false,
             jumlah: 1,
             showDatePicker: true,
 
@@ -60,67 +62,93 @@ export default class ReservasiScreen extends Component {
         return (
             <View style={styles.mainContainer}>
                 <View style={styles.container}>
+                    <View style={{ backgroundColor: '#1565c0' }}>
+                        <Icon type='Ionicons' name='ios-arrow-back'
+                            style={styles.set}
+                            onPress={() => this.props.navigation.navigate('Beranda')}
+                        />
+                    </View>
                     <View
                         style={styles.centered}>
                         <Image source={Images.logoApp} style={styles.logo} />
                         <Text style={styles.txtTitle}>RESERVASI</Text>
                     </View>
                     <View style={styles.footer}>
-                        <Card style={styles.card}>
-                            <List>
-                                <ListItem>
-                                    <CardItem>
-                                        <Left>
-                                            <Text style={styles.txtCard}>Date</Text>
-                                        </Left>
-                                        <Body>
-                                            <Text style={styles.txtCard}>: {this.state.hari}-{this.state.bulan}-{this.state.tahun}</Text>
-                                        </Body>
-                                        <Right>
-                                            <Icon
-                                                onPress={() => this.setState({ show: true })}
-                                                style={styles.icon} type='Feather' name='calendar' />
-                                        </Right>
-                                    </CardItem>
-                                </ListItem>
-                                <ListItem>
-                                    <CardItem>
-                                        <Left>
-                                            <Text style={styles.txtCard}>Time</Text>
-                                        </Left>
-                                        <Body>
-                                            <Text style={styles.txtCard}>: Waktu</Text>
-                                        </Body>
-                                        <Right>
-                                            <Icon
-                                                onPress={() => this.setState({ show1: true })}
-                                                style={styles.icon} type='AntDesign' name='clockcircleo' />
-                                        </Right>
-                                    </CardItem>
-                                </ListItem>
-                                <ListItem>
-                                    <CardItem>
-                                        <Left>
-                                            <Text style={styles.txtCard}>Customer</Text>
-                                        </Left>
-                                        <Body>
-                                            <Text style={styles.txtCard1}>: {this.state.jumlah}</Text>
-                                        </Body>
-                                        <Right>
-                                            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                                                <Icon style={styles.icon}
-                                                    onPress={this.kurangJumlah}
-                                                    type='AntDesign' name='minuscircleo' />
-                                                <Text style={styles.txtCard1}></Text>
-                                                <Icon style={styles.icon}
-                                                    onPress={this.tambahJumlah}
-                                                    type='AntDesign' name='pluscircleo' />
-                                            </View>
-                                        </Right>
-                                    </CardItem>
-                                </ListItem>
-                            </List>
-                        </Card>
+                        <ScrollView>
+                            <Card style={styles.card}>
+                                <List>
+                                    <ListItem>
+                                        <CardItem>
+                                            <Left>
+                                                <Text style={styles.txtCard}>Date</Text>
+                                            </Left>
+                                            <Body>
+                                                <Text style={styles.txtCard}>: {this.state.hari}-{this.state.bulan}-{this.state.tahun}</Text>
+                                            </Body>
+                                            <Right>
+                                                <Icon
+                                                    onPress={() => this.setState({ show: true })}
+                                                    style={styles.icon} type='Feather' name='calendar' />
+                                            </Right>
+                                        </CardItem>
+                                    </ListItem>
+                                    <ListItem>
+                                        <CardItem>
+                                            <Left>
+                                                <Text style={styles.txtCard}>Time</Text>
+                                            </Left>
+                                            <Body>
+                                                <Text style={styles.txtCard}>: Waktu</Text>
+                                            </Body>
+                                            <Right>
+                                                <Icon
+                                                    onPress={() => this.setState({ show1: true })}
+                                                    style={styles.icon} type='AntDesign' name='clockcircleo' />
+                                            </Right>
+                                        </CardItem>
+                                    </ListItem>
+                                    <ListItem>
+                                        <CardItem>
+                                            <Left>
+                                                <Text style={styles.txtCard}>Customer</Text>
+                                            </Left>
+                                            <Body>
+                                                <Text style={styles.txtCard1}>: {this.state.jumlah}</Text>
+                                            </Body>
+                                            <Right>
+                                                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                                                    <Icon style={styles.icon}
+                                                        onPress={this.kurangJumlah}
+                                                        type='AntDesign' name='minuscircleo' />
+                                                    <Text style={styles.txtCard1}></Text>
+                                                    <Icon style={styles.icon}
+                                                        onPress={this.tambahJumlah}
+                                                        type='AntDesign' name='pluscircleo' />
+                                                </View>
+                                            </Right>
+                                        </CardItem>
+                                    </ListItem>
+                                    <ListItem>
+                                        <CardItem>
+                                            <Left>
+                                                <Text style={styles.txtCard}>No Meja</Text>
+                                            </Left>
+                                            <Body>
+                                                <Text style={styles.txtCard1}>: 2</Text>
+                                            </Body>
+                                            <Right>
+                                                <Text
+                                                    onPress={() => this.setState({ show3: true })}
+                                                    style={styles.txtBtnPilih}
+                                                >
+                                                    Lihat Meja
+                                                </Text>
+                                            </Right>
+                                        </CardItem>
+                                    </ListItem>
+                                </List>
+                            </Card>
+                        </ScrollView>
                     </View>
                     <Button full
                         style={styles.btnSign}>
@@ -153,17 +181,24 @@ export default class ReservasiScreen extends Component {
                     </View>
                 </Modal>
                 <Modal transparent={true} visible={this.state.show1}>
+                    {/* <View style={styles.bgModal}> */}
+                    {/* <View style={styles.modal}> */}
+                    <DateTimePickerModal
+                        isVisible={this.showDatePicker}
+                        mode="time"
+                    // onConfirm={console.log(time)}
+                    // onCancel={hideDatePicker}
+                    />
+                    {/* <Button onPress={() => this.setState({ show1: false })}>
+                                <Text>OK</Text>
+                            </Button> */}
+                    {/* </View> */}
+                    {/* </View> */}
+                </Modal>
+                <Modal transparent={true} visible={this.state.show3}>
                     <View style={styles.bgModal}>
                         <View style={styles.modal}>
-                            <DateTimePickerModal
-                                isVisible={this.showDatePicker}
-                                mode="time"
-                                // onConfirm={console.log(time)}
-                            // onCancel={hideDatePicker}
-                            />
-                            <Button onPress={() => this.setState({ show1: false })}>
-                                <Text>OK</Text>
-                            </Button>
+                            <Text>Pilih Meja</Text>
                         </View>
                     </View>
                 </Modal>

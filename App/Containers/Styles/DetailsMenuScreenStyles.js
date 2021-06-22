@@ -24,11 +24,12 @@ export default StyleSheet.create({
   btn: {
     backgroundColor: 'green',
     marginTop: 10,
-    marginHorizontal: 10,
-    borderRadius: 10
+    // marginHorizontal: 20,
+    borderRadius: 20
   },
   txtBtn: {
     color: 'white',
+    alignSelf: 'center',
     fontSize: 18,
     fontWeight: 'bold'
   },

@@ -8,6 +8,7 @@ import DetailsMenuScreen from './App/Containers/DetailsMenuScreen'
 import ReservasiScreen from './App/Containers/ReservasiScreen'
 import MenuTabNav from './App/Containers/MenuTabNav'
 import EditAkunScreen from './App/Containers/EditAkunScreen'
+import KeranjangScreen from './App/Containers/KeranjangScreen'
 
 import styles from './App/NavigationStyles'
 
@@ -20,6 +21,7 @@ const PrimaryNav = createStackNavigator({
   ReservasiScreen: { screen: ReservasiScreen },
   MenuTabNav: { screen : MenuTabNav },
   EditAkunScreen: { screen : EditAkunScreen },
+  KeranjangScreen: { screen : KeranjangScreen },
 }, {
     headerMode: 'none',
     initialRouteName: 'LaunchScreen',

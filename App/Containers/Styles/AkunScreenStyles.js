@@ -51,5 +51,10 @@ export default StyleSheet.create({
   },
   txtRight: {
     fontSize: 18,
-  }
+  },
+  txtLogout: {
+    fontSize: 18,
+    color: '#1565c0',
+    fontWeight: 'bold'
+  },
 })

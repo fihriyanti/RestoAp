@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import { Image, View, Text } from 'react-native'
+import { Image, View, Text, ScrollView } from 'react-native'
 import { Body, Card, CardItem, Icon } from 'native-base'
 import { Images } from '../Themes'
+import { TouchableHighlight } from 'react-native-gesture-handler'
 
 // Styles
 import styles from './Styles/MenuMakananScreenStyles'
-import { TouchableHighlight } from 'react-native-gesture-handler'
-import { ScrollView } from 'react-native'
 
 export default class MenuMakananScreen extends Component {
   render() {
@@ -28,7 +27,7 @@ export default class MenuMakananScreen extends Component {
             <View style={styles.body}>
               <View style={styles.lineCard}>
                 <TouchableHighlight
-                  underlayColor='#1565c0'
+                  underlayColor='#eeeeee'
                   onPress={() => this.props.navigation.navigate('DetailsMenuScreen')}
                 >
                   <Card style={styles.card}>

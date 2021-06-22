@@ -7,7 +7,6 @@ export default StyleSheet.create({
         flex: 1,
     },
     logo: {
-        marginTop: Metrics.doubleSection,
         height: Metrics.images.ikon,
         width: Metrics.images.ikon,
         resizeMode: 'contain'
@@ -20,6 +19,13 @@ export default StyleSheet.create({
         paddingHorizontal: 20,
         borderBottomRightRadius: 30,
         borderBottomLeftRadius: 30
+    },
+    set: {
+      color: 'white',
+      fontSize: 32,
+      marginTop: 10,
+      marginRight: 10,
+      marginLeft: 10
     },
     txtTitle: {
         marginTop: 10,
@@ -74,5 +80,14 @@ export default StyleSheet.create({
         backgroundColor: '#9e9e9eaa',
         flex: 1,
         justifyContent: 'center',
+    },
+    btnPilih: {
+        borderColor: '#1565c0',
+        padding: 10
+    },
+    txtBtnPilih: {
+        textAlign: 'center', 
+        color: '#1565c0', 
+        fontWeight: 'bold'
     },
 })

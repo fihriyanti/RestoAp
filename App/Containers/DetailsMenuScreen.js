@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Image, View, Text } from 'react-native'
-import { Body, Button, Icon, Left, Right } from 'native-base'
+import { Body, Button, Card, CardItem, Icon, Left, Right } from 'native-base'
 import { Images } from '../Themes'
 
 // Styles
@@ -14,8 +14,8 @@ export default class DetailsMenuScreen extends Component {
         this.setState({ count: this.state.count + 1 })
     }
     kurangJumlah = () => {
-        if (this.state.count <= 0){
-            this.state.count=1
+        if (this.state.count <= 0) {
+            this.state.count = 1
         }
         this.setState({ count: this.state.count - 1 })
     }
@@ -37,9 +37,13 @@ export default class DetailsMenuScreen extends Component {
                     </View>
                     <View>
                         <Image source={Images.ayamrica} style={styles.logo} />
-                        <Button full style={styles.btn}>
-                            <Text style={styles.txtBtn}>TERSEDIA</Text>
-                        </Button>
+                        <Card style={styles.btn}>
+                            <CardItem style={{backgroundColor: 'green'}}>
+                                <Body>
+                                    <Text style={styles.txtBtn}>TERSEDIA</Text>
+                                </Body>
+                            </CardItem>
+                        </Card>
                         <View style={styles.body}>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                                 <View>
@@ -73,7 +77,9 @@ export default class DetailsMenuScreen extends Component {
                         </View>
                     </View>
                 </View>
-                <Button full style={styles.btnCart}>
+                <Button full style={styles.btnCart}
+                onPress={() => this.props.navigation.navigate('KeranjangScreen')}
+                >
                     <Icon style={styles.back} type='FontAwesome5' name='cart-plus' />
                 </Button>
             </View>

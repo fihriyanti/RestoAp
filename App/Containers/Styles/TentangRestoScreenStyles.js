@@ -22,5 +22,9 @@ export default StyleSheet.create({
     color: 'white',
     margin: 3,
     fontSize: 18,
-  },  
+  },
+  nama: {
+    fontSize: 25,
+    fontWeight: 'bold'
+  }
 })
