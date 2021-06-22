@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Image, View, Text, Dimensions } from 'react-native'
-import { Button } from 'native-base'
+import { Card, CardItem } from 'native-base'
 import { Images } from '../Themes'
 
 // Styles
@@ -66,8 +66,75 @@ export default class TentangRestoScreen extends Component {
               <Text>Jl. Tamalanrea Raya, Paccerakkang, Kec. Biringkanaya, Kota Makassar, Sulawesi Selatan 90562</Text>
               <View style={{ flexDirection: 'row' }}>
                 <Text>No. Telepon : </Text>
-                <Text style={{color: 'blue', fontWeight: 'bold'}}>+62 813 5462 6252</Text>
+                <Text style={{ color: 'blue', fontWeight: 'bold' }}>+62 813 5462 6252</Text>
               </View>
+            </View>
+            <Text style={styles.txtPop}>Popular</Text>
+            <View style={{ padding: 10 }}>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                <Card style={styles.card}>
+                  <CardItem cardBody>
+                    <Image source={Images.ayamrica}
+                      style={{ height: 150, width: 170, borderRadius: 10 }}
+                    />
+                  </CardItem>
+                  <CardItem>
+                    <View style={{ flexDirection: 'column' }}>
+                      <Text style={styles.namaMenu}>Ayam Rica</Text>
+                    </View>
+                  </CardItem>
+                </Card>
+                <Card style={styles.card}>
+                  <CardItem cardBody>
+                    <Image source={Images.nasikambing}
+                      style={{ height: 150, width: 170, borderRadius: 10 }}
+                    />
+                  </CardItem>
+                  <CardItem>
+                    <View style={{ flexDirection: 'column' }}>
+                      <Text style={styles.namaMenu}>Nasi Goreng Kambing</Text>
+                    </View>
+                  </CardItem>
+                </Card>
+                <Card style={styles.card}>
+                  <CardItem cardBody>
+                    <Image source={Images.miejawa}
+                      style={{ height: 150, width: 170, borderRadius: 10 }}
+                    />
+                  </CardItem>
+                  <CardItem>
+                    <View style={{ flexDirection: 'column' }}>
+                      <Text style={styles.namaMenu}>Mie Goreng Jawa</Text>
+                    </View>
+                  </CardItem>
+                </Card>
+              </ScrollView>
+            </View>
+            <Text style={styles.txtPop}>Place</Text>
+            <View style={{ padding: 10 }}>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                <Card style={styles.card}>
+                  <CardItem cardBody>
+                    <Image source={Images.gbr2}
+                      style={{ height: 150, width: 170, borderRadius: 10 }}
+                    />
+                  </CardItem>
+                </Card>
+                <Card style={styles.card}>
+                  <CardItem cardBody>
+                    <Image source={Images.gbr3}
+                      style={{ height: 150, width: 170, borderRadius: 10 }}
+                    />
+                  </CardItem>
+                </Card>
+                <Card style={styles.card}>
+                  <CardItem cardBody>
+                    <Image source={Images.gbr4}
+                      style={{ height: 150, width: 170, borderRadius: 10 }}
+                    />
+                  </CardItem>
+                </Card>
+              </ScrollView>
             </View>
           </ScrollView>
         </View>

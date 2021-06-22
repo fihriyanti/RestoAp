@@ -8,9 +8,9 @@ export default StyleSheet.create({
     backgroundColor: 'white',
   },
   dotView: {
-    flexDirection: 'row', 
-    position: 'absolute', 
-    bottom: 0, 
+    flexDirection: 'row',
+    position: 'absolute',
+    bottom: 0,
     alignSelf: 'center'
   },
   dot: {
@@ -26,5 +26,20 @@ export default StyleSheet.create({
   nama: {
     fontSize: 25,
     fontWeight: 'bold'
-  }
+  },
+  txtPop: {
+      marginLeft: 20,
+      fontSize: 18,
+      fontWeight: 'bold',
+      fontFamily: 'serif'
+  },
+  card: {
+    borderRadius: 20,
+    marginRight: 10,
+  },
+  namaMenu: {
+    fontFamily: 'serif',
+    fontWeight: 'bold',
+    fontSize: 12
+  },
 })
