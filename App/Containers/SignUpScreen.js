@@ -18,12 +18,12 @@ export default class SignUpScreen extends Component {
   // }
   constructor() {
     super();
-    this.state = { 
+    this.state = {
       displayName: '',
-      email: '', 
+      email: '',
       password: ''
     }
-  } 
+  }
 
   componentDidMount() {
     // Your web app's Firebase configuration
@@ -38,30 +38,30 @@ export default class SignUpScreen extends Component {
       // measurementId: "G-JGQ4DRP757"  
     };
     // Initialize Firebase
-    if(!firebase.apps.length){
+    if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig);
     }
-    else{
+    else {
       firebase.app();
     }
   }
 
   registerUser = () => {
-    if(this.state.email === '' && this.state.password === '') {
+    if (this.state.email === '' && this.state.password === '') {
       Alert.alert('Enter details to signup!')
     } else {
       firebase.auth()
-      .createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then((res) => {
-        res.user.updateProfile({
-          displayName: this.state.displayName
+        .createUserWithEmailAndPassword(this.state.email, this.state.password)
+        .then((res) => {
+          res.user.updateProfile({
+            displayName: this.state.displayName
+          })
+          console.log('User registered successfully!')
+          this.props.navigation.navigate('LoginScreen')
         })
-        console.log('User registered successfully!')
-        this.props.navigation.navigate('LoginScreen')
-      })
-      .catch(error => this.setState({ errorMessage: error.message }))      
+        .catch(error => this.setState({ errorMessage: error.message }))
     }
-  }  
+  }
 
   render() {
     return (
@@ -75,23 +75,28 @@ export default class SignUpScreen extends Component {
           <Animatable.View
             animation='fadeInUpBig'
             style={styles.footer}>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
               <Text style={styles.header}>SIGN UP</Text>
               <View style={styles.form}>
+                <Text style={styles.label}>Phone Number</Text>
+                <Item inlineLabel style={styles.item1}>
+                  <Icon type='Fontisto' name='phone' />
+                  <Input placeholder='Your Phone Number' style={styles.input} onChangeText={email => this.setState({ email })} />
+                </Item>
                 <Text style={styles.label}>Email</Text>
                 <Item inlineLabel style={styles.item1}>
                   <Icon type='Zocial' name='email' />
-                  <Input placeholder='Your Email' style={styles.input} onChangeText={email => this.setState({email})} />
+                  <Input placeholder='Your Email' style={styles.input} onChangeText={email => this.setState({ email })} />
                 </Item>
                 <Text style={styles.label}>Username</Text>
                 <Item inlineLabel style={styles.item1}>
                   <Icon type='FontAwesome' name='user-o' />
-                  <Input placeholder='Your Username' style={styles.input} onChangeText={displayName => this.setState({displayName})} />
+                  <Input placeholder='Your Username' style={styles.input} onChangeText={displayName => this.setState({ displayName })} />
                 </Item>
                 <Text style={styles.label}>Password</Text>
                 <Item inlineLabel style={styles.item1}>
                   <Icon type='SimpleLineIcons' name='lock' />
-                  <Input placeholder='Your Password' style={styles.input} onChangeText={password => this.setState({password})}/>
+                  <Input placeholder='Your Password' style={styles.input} onChangeText={password => this.setState({ password })} />
                   <Icon type='Ionicons' name='eye-off-outline' />
                 </Item>
                 <Button rounded

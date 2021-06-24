@@ -41,7 +41,7 @@ export default StyleSheet.create({
   },
   label: {
     color: '#1565c0',
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: 'bold'
   },
   item1: {

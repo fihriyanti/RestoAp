@@ -8,14 +8,22 @@ import * as Animatable from 'react-native-animatable';
 
 // Styles
 import styles from './Styles/LoginScreenStyles'
+import { TouchableOpacity } from 'react-native'
 
 export default class LoginScreen extends Component {
   state = {
-    
     username: '',
-    password: ''
+    password: '',
+    secureTextEntry: true
+
   }
-  
+
+  secureTextEntry() {
+    this.setState({
+      secureTextEntry: !this.state.secureTextEntry
+    })
+  }
+
   // constructor(props) {
   //   super(props);
   //   this.state = {
@@ -37,21 +45,21 @@ export default class LoginScreen extends Component {
       // measurementId: "G-JGQ4DRP757"  
     };
     // Initialize Firebase
-    if(!firebase.apps.length){
+    if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig);
     }
-    else{
+    else {
       firebase.app();
     }
     // firebase.analytics();
-   
-    firebase.auth().onAuthStateChanged(user =>{
-      if(user){
+
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
         // this.setState({
         //   isLogin:true
         // })
         this.props.navigation.navigate("BerandaTabNav")
-      } else{
+      } else {
         // this.setState({
         //   isLogin:false
         // })
@@ -60,12 +68,12 @@ export default class LoginScreen extends Component {
     });
   }
 
-  onPressLogin=()=>{
+  onPressLogin = () => {
     firebase.auth().signInWithEmailAndPassword(this.state.username, this.state.password).
-    then(this.onLoginSuccess)
+      then(this.onLoginSuccess)
   }
 
-  onLoginSuccess=()=>{
+  onLoginSuccess = () => {
     this.props.navigation.navigate("BerandaTabNav")
   }
 
@@ -87,13 +95,23 @@ export default class LoginScreen extends Component {
                 <Text style={styles.label}>Username</Text>
                 <Item inlineLabel style={styles.item1}>
                   <Icon type='FontAwesome' name='user-o' />
-                  <Input placeholder='Your Username' style={styles.input} onChangeText={username => this.setState({username})}/>
+                  <Input placeholder='Your Username' style={styles.input} onChangeText={username => this.setState({ username })} />
                 </Item>
                 <Text style={styles.label}>Password</Text>
                 <Item inlineLabel style={styles.item1}>
                   <Icon type='SimpleLineIcons' name='lock' />
-                  <Input placeholder='Your Password' style={styles.input} onChangeText={password => this.setState({password})}/>
-                  <Icon type='Ionicons' name='eye-off-outline' />
+                  {this.state.secureTextEntry ?
+                    <Input secureTextEntry={true} placeholder='Your Password' style={styles.input} onChangeText={password => this.setState({ password })} />
+                    :
+                    <Input placeholder='Your Password' style={styles.input} onChangeText={password => this.setState({ password })} />
+                  }
+                  <TouchableOpacity onPress={() => this.secureTextEntry()}>
+                    {this.state.secureTextEntry ?
+                      <Icon type='Ionicons' name='eye-off-outline' />
+                      :
+                      <Icon type='Ionicons' name='eye-outline' />
+                    }
+                  </TouchableOpacity>
                 </Item>
                 <Button rounded
                   onPress={this.onPressLogin}
