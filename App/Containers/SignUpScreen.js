@@ -2,15 +2,17 @@ import React, { Component } from 'react'
 import { Image, View, Text, Alert } from 'react-native'
 import { Item, Input, Icon, Button } from 'native-base'
 import { Images } from '../Themes'
-// import firebase from '@react-native-firebase/auth'
 import firebase from 'firebase'
+// import firebase from 'react-native-firebase'
 
-import * as Animatable from 'react-native-animatable';
+import * as Animatable from 'react-native-animatable'
+// import Recaptcha from 'react-native-recaptcha-that-works'
 
 // Styles
 import styles from './Styles/SignUpScreenStyles'
 import { ScrollView } from 'react-native';
-
+// const captchaUrl = './Captcha.html'
+  
 export default class SignUpScreen extends Component {
 
   // state={
@@ -21,7 +23,15 @@ export default class SignUpScreen extends Component {
     this.state = {
       displayName: '',
       email: '',
-      password: ''
+      password: '',
+      phone: '',
+      confirmResult: null,
+      token: ''
+      //Phone Auth
+      // showModal: false,
+      // codeIsSent: false,
+      // confirmation: {},
+      // errorMessage: ''
     }
   }
 
@@ -46,22 +56,77 @@ export default class SignUpScreen extends Component {
     }
   }
 
-  registerUser = () => {
-    if (this.state.email === '' && this.state.password === '') {
-      Alert.alert('Enter details to signup!')
-    } else {
-      firebase.auth()
-        .createUserWithEmailAndPassword(this.state.email, this.state.password)
-        .then((res) => {
-          res.user.updateProfile({
-            displayName: this.state.displayName
-          })
-          console.log('User registered successfully!')
-          this.props.navigation.navigate('LoginScreen')
+
+  //Phone Auth Old
+
+  validatePhoneNumber = () => {
+    var regexp = /^\+[0-9]?()[0-9](\s|\S)(\d[0-9]{8,16})$/
+    return regexp.test(this.state.phone)
+  }
+
+  handleSendCode = () => {
+    // const recaptcha = useRef();
+    // const tokenEncoded = Linking.parse(url).queryParams['token'];
+    
+    // const token = decodeURIComponent(tokenEncoded);
+    // const captchaVerifier = firebase.auth.RecaptchaVerifier('captcha')
+    // Request to send OTP
+    if (this.validatePhoneNumber()) {
+      firebase.auth().settings.appVerificationDisabledForTesting = true
+      firebase
+        .auth()
+        .signInWithPhoneNumber(this.state.phone, true)
+        .then(confirmResult => {
+          this.setState({ confirmResult })
         })
-        .catch(error => this.setState({ errorMessage: error.message }))
+        .catch(error => {
+          alert(error.message)
+  
+          console.log(error)
+        })
+        // console.log('Success Added')
+    } else {
+      alert('Invalid Phone Number')
     }
   }
+  
+
+  // PhoneSignIn = () => {
+  //   const [confirm, setConfirm] = useState(null);
+
+  //   const [code, setCode] = useState('');
+
+  //   // Handle the button press
+  //   async function signInWithPhoneNumber(phoneNumber) {
+  //     const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
+  //     setConfirm(confirmation);
+  //   }
+
+  //   async function confirmCode() {
+  //     try {
+  //       await confirm.confirm(code);
+  //     } catch (error) {
+  //       console.log('Invalid code.');
+  //     }
+  //   }
+  // }
+
+  // registerUser = () => {
+  //   if (this.state.email === '' && this.state.password === '') {
+  //     Alert.alert('Enter details to signup!')
+  //   } else {
+  //     firebase.auth()
+  //       .createUserWithEmailAndPassword(this.state.email, this.state.password)
+  //       .then((res) => {
+  //         res.user.updateProfile({
+  //           displayName: this.state.displayName
+  //         })
+  //         console.log('User registered successfully!')
+  //         this.props.navigation.navigate('LoginScreen')
+  //       })
+  //       .catch(error => this.setState({ errorMessage: error.message }))
+  //   }
+  // }
 
   render() {
     return (
@@ -81,9 +146,9 @@ export default class SignUpScreen extends Component {
                 <Text style={styles.label}>Phone Number</Text>
                 <Item inlineLabel style={styles.item1}>
                   <Icon type='Fontisto' name='phone' />
-                  <Input placeholder='Your Phone Number' style={styles.input} onChangeText={email => this.setState({ email })} />
+                  <Input placeholder='Your Phone Number' style={styles.input} value={this.state.phone} onChangeText={phone => this.setState({ phone })} />
                 </Item>
-                <Text style={styles.label}>Email</Text>
+                {/* <Text style={styles.label}>Email</Text>
                 <Item inlineLabel style={styles.item1}>
                   <Icon type='Zocial' name='email' />
                   <Input placeholder='Your Email' style={styles.input} onChangeText={email => this.setState({ email })} />
@@ -98,9 +163,9 @@ export default class SignUpScreen extends Component {
                   <Icon type='SimpleLineIcons' name='lock' />
                   <Input placeholder='Your Password' style={styles.input} onChangeText={password => this.setState({ password })} />
                   <Icon type='Ionicons' name='eye-off-outline' />
-                </Item>
+                </Item> */}
                 <Button rounded
-                  onPress={this.registerUser}
+                  onPress={this.handleSendCode}
                   style={styles.btnSign}>
                   <Text style={styles.txtSign}>SIGN UP</Text>
                 </Button>

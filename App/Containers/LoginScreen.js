@@ -70,7 +70,9 @@ export default class LoginScreen extends Component {
 
   onPressLogin = () => {
     firebase.auth().signInWithEmailAndPassword(this.state.username, this.state.password).
-      then(this.onLoginSuccess)
+      then(this.onLoginSuccess).catch(error => {
+        alert("Invalid Email or Password")
+      })
   }
 
   onLoginSuccess = () => {

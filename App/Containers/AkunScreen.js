@@ -33,7 +33,7 @@ export default class AkunScreen extends Component {
   }
   
   signoutuser = () =>{
-    firebase.auth().signOut
+    firebase.auth().signOut()
     this.props.navigation.navigate('LoginScreen')
   }
   render() {
