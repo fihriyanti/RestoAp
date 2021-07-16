@@ -7,8 +7,14 @@ import { Images } from '../Themes'
 import styles from './Styles/DetailsMenuScreenStyles'
 
 export default class DetailsMenuScreen extends Component {
-    state = {
-        count: 1,
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: '',
+            hobby: '',
+            age:'',
+            count: 0
+        }
     }
     tambahJumlah = () => {
         this.setState({ count: this.state.count + 1 })
@@ -18,6 +24,11 @@ export default class DetailsMenuScreen extends Component {
             this.state.count = 1
         }
         this.setState({ count: this.state.count - 1 })
+    }
+
+    jumlahkan = () => {
+        var jumlah = this.state.count * this.props.navigation.getParam('paramharga');
+        console.log(jumlah)
     }
 
     render() {
@@ -36,7 +47,7 @@ export default class DetailsMenuScreen extends Component {
                         <Right />
                     </View>
                     <View>
-                        <Image source={Images.ayamrica} style={styles.logo} />
+                        <Image source={{uri : this.props.navigation.getParam('paramimg')}} style={styles.logo} />
                         <Card style={styles.btn}>
                             <CardItem style={{backgroundColor: 'green'}}>
                                 <Body>
@@ -47,8 +58,8 @@ export default class DetailsMenuScreen extends Component {
                         <View style={styles.body}>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                                 <View>
-                                    <Text style={styles.namaMenu}>Ayam Rica</Text>
-                                    <Text style={styles.hargaMenu}>Rp. 18.000</Text>
+                                    <Text style={styles.namaMenu}>{this.props.navigation.getParam('paramnama')}</Text>
+                                    <Text style={styles.hargaMenu}>{this.props.navigation.getParam('paramharga')}</Text>
                                     <View style={styles.review}>
                                         <Icon type='Entypo' name='star' style={styles.star} />
                                         <Icon type='Entypo' name='star' style={styles.star} />
@@ -78,7 +89,10 @@ export default class DetailsMenuScreen extends Component {
                     </View>
                 </View>
                 <Button full style={styles.btnCart}
-                onPress={() => this.props.navigation.navigate('KeranjangScreen')}
+                onPress={
+                    // () => this.props.navigation.navigate('KeranjangScreen')
+                    () => this.jumlahkan()
+                }
                 >
                     <Icon style={styles.back} type='FontAwesome5' name='cart-plus' />
                 </Button>

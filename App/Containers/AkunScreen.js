@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Image, View, Text } from 'react-native'
 import { Button, Icon, Thumbnail, List, ListItem, Left, Right } from 'native-base'
 import { Images } from '../Themes'
-import firebase from 'firebase'
+import auth from '@react-native-firebase/auth'
 
 // Styles
 import styles from './Styles/AkunScreenStyles'
@@ -11,30 +11,29 @@ import { ScrollView } from 'react-native'
 export default class AkunScreen extends Component {
   
 
-  componentDidMount() {
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    var firebaseConfig = {
-      apiKey: "AIzaSyCD0uUL812u98r3LSsLfx60_BiJEEhnHM4",
-      authDomain: "d-fasto.firebaseapp.com",
-      projectId: "d-fasto",
-      storageBucket: "d-fasto.appspot.com",
-      messagingSenderId: "888195449280",
-      appId: "1:888195449280:web:b838a6deaac9fd26c8c825"
-      // measurementId: "G-JGQ4DRP757"  
-    };
-    // Initialize Firebase
-    if(!firebase.apps.length){
-      firebase.initializeApp(firebaseConfig);
-    }
-    else{
-      firebase.app();
-    }
-  }
+  // componentDidMount() {
+  //   // Your web app's Firebase configuration
+  //   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  //   var firebaseConfig = {
+  //     apiKey: "AIzaSyCD0uUL812u98r3LSsLfx60_BiJEEhnHM4",
+  //     authDomain: "d-fasto.firebaseapp.com",
+  //     projectId: "d-fasto",
+  //     storageBucket: "d-fasto.appspot.com",
+  //     messagingSenderId: "888195449280",
+  //     appId: "1:888195449280:web:b838a6deaac9fd26c8c825"
+  //     // measurementId: "G-JGQ4DRP757"  
+  //   };
+  //   // Initialize Firebase
+  //   if(!firebase.apps.length){
+  //     firebase.initializeApp(firebaseConfig);
+  //   }
+  //   else{
+  //     firebase.app();
+  //   }
+  // }
   
   signoutuser = () =>{
-    firebase.auth().signOut()
-    this.props.navigation.navigate('LoginScreen')
+    auth().signOut().then(this.props.navigation.navigate('LoginScreen'))
   }
   render() {
     return (

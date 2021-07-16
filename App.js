@@ -3,12 +3,14 @@ import { createStackNavigator } from 'react-navigation-stack'
 import LaunchScreen from './App/Containers/LaunchScreen'
 import LoginScreen from './App/Containers/LoginScreen'
 import SignUpScreen from './App/Containers/SignUpScreen'
+// import VerifyCodeScreen from './App/Containers/VerifyCodeScreen'
 import BerandaTabNav from './App/Containers/BerandaTabNav'
 import DetailsMenuScreen from './App/Containers/DetailsMenuScreen'
 import ReservasiScreen from './App/Containers/ReservasiScreen'
 import MenuTabNav from './App/Containers/MenuTabNav'
 import EditAkunScreen from './App/Containers/EditAkunScreen'
 import KeranjangScreen from './App/Containers/KeranjangScreen'
+import PhoneAuth from './App/Containers/PhoneAuth'
 
 import styles from './App/NavigationStyles'
 
@@ -16,12 +18,14 @@ const PrimaryNav = createStackNavigator({
   LaunchScreen: { screen: LaunchScreen },
   LoginScreen: { screen: LoginScreen },
   SignUpScreen: { screen: SignUpScreen },
+  // VerifyCodeScreen: { screen: VerifyCodeScreen },
   BerandaTabNav: { screen: BerandaTabNav },
   DetailsMenuScreen: { screen: DetailsMenuScreen },
   ReservasiScreen: { screen: ReservasiScreen },
   MenuTabNav: { screen : MenuTabNav },
   EditAkunScreen: { screen : EditAkunScreen },
   KeranjangScreen: { screen : KeranjangScreen },
+  PhoneAuth: { screen : PhoneAuth },
 }, {
     headerMode: 'none',
     initialRouteName: 'LaunchScreen',

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Image, View, Text, ScrollView } from 'react-native'
-import { Item, Input, Icon, Button } from 'native-base'
+import { Item, Input, Icon, Button, Label } from 'native-base'
 import firebase from 'firebase'
 import { Images } from '../Themes'
 
@@ -24,19 +24,10 @@ export default class LoginScreen extends Component {
     })
   }
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //       username: '',
-  //       password: '',
-  //   }
-  // }
-
   componentDidMount() {
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     var firebaseConfig = {
       apiKey: "AIzaSyCD0uUL812u98r3LSsLfx60_BiJEEhnHM4",
+      databaseURL: "https://d-fasto-default-rtdb.asia-southeast1.firebasedatabase.app",
       authDomain: "d-fasto.firebaseapp.com",
       projectId: "d-fasto",
       storageBucket: "d-fasto.appspot.com",
@@ -94,6 +85,12 @@ export default class LoginScreen extends Component {
             <ScrollView>
               <Text style={styles.header}>SIGN IN</Text>
               <View style={styles.form}>
+                <Text style={styles.label}>Phone Number</Text>
+                <Item inlineLabel style={styles.item1}>
+                  <Icon type='Fontisto' name='phone' />
+                  <Label>+62</Label>
+                  <Input placeholder='Enter Your Phone Number' style={styles.input} onChangeText={username => this.setState({ username })} />
+                </Item>
                 <Text style={styles.label}>Username</Text>
                 <Item inlineLabel style={styles.item1}>
                   <Icon type='FontAwesome' name='user-o' />
@@ -122,7 +119,7 @@ export default class LoginScreen extends Component {
                 </Button>
                 <Text style={styles.txtAc}>Don't have a account?</Text>
                 <Button rounded bordered
-                  onPress={() => this.props.navigation.navigate('SignUpScreen')}
+                  // onPress={() => this.props.navigation.navigate('PhoneAuth')}
                   style={styles.btnSignUp}>
                   <Text style={styles.txtSignUp}>SIGN UP</Text>
                 </Button>

@@ -1,14 +1,70 @@
 import React, { Component } from 'react'
-import { Image, View, Text } from 'react-native'
-import { Body, Card, CardItem, Icon } from 'native-base'
+import { Image, View, Text, FlatList } from 'react-native'
+import { Body, Card, CardItem, Icon, Left, Right } from 'native-base'
 import { Images } from '../Themes'
+import firebase from 'firebase';
 
 // Styles
-import styles from './Styles/MenuMinumanScreenStyles'
+import styles from './Styles/MenuMakananScreenStyles'
 import { TouchableHighlight } from 'react-native-gesture-handler'
 import { ScrollView } from 'react-native'
 
 export default class MenuMinumanScreen extends Component {
+
+
+  constructor() {
+    super();
+    this.state = {
+      displayName: '',
+      harga: '',
+      img: '',
+      list: []
+      //Phone Auth
+      // showModal: false,
+      // codeIsSent: false,
+      // confirmation: {},
+      // errorMessage: ''
+    }
+  }
+
+  componentDidMount() {
+    const firebaseConfig = {
+      apiKey: "AIzaSyCD0uUL812u98r3LSsLfx60_BiJEEhnHM4",
+      authDomain: "d-fasto.firebaseapp.com",
+      databaseURL: "https://d-fasto-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "d-fasto",
+      storageBucket: "d-fasto.appspot.com",
+      messagingSenderId: "888195449280",
+      appId: "1:888195449280:web:b838a6deaac9fd26c8c825",
+      measurementId: "G-JGQ4DRP757"
+    };
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    } else {
+      firebase.app()
+    }
+    // firebase.database().ref('Menu/Makanan').on('value', datasnap => {
+    //   const gambar = datasnap.val();
+    //   this.setState({ gambar });
+    //   console.log(gambar);
+
+    // });
+    firebase.database().ref('Menu/Minuman').on('value', (snapshot) => {
+      var li = []
+      snapshot.forEach((child) => {
+        li.push({
+          key: child.key,
+          nama: child.val().Nama,
+          harga: child.val().Harga,
+          img: child.val().Img
+        })
+      })
+      this.setState({ list: li })
+    })
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  }
   render() {
     return (
       <View style={styles.mainContainer}>
@@ -24,87 +80,49 @@ export default class MenuMinumanScreen extends Component {
               />
             </View>
           </View>
-          <ScrollView scrollEnabled={false}>
             <View style={styles.body}>
-              <View style={styles.lineCard}>
+            <FlatList
+              data={this.state.list}
+              keyExtractor={(item) => item.key}
+              renderItem={({ item }) => (
                 <TouchableHighlight
-                  underlayColor='#1565c0'
-                  onPress={() => this.props.navigation.navigate('DetailsMenuScreen')}
+                  onPress={() => {
+                    console.log(item.key, item.nama, item.harga, item.img)
+                    // this.btnAlert(item.key, item.nama, item.harga, item.img);
+                    this.props.navigation.navigate('DetailsMenuScreen', {
+                      paramkey : item.key, 
+                      paramnama : item.nama, 
+                      paramharga : item.harga,
+                      paramimg : item.img
+                    })
+                  }
+                  }
                 >
                   <Card style={styles.card}>
                     <CardItem cardBody>
-                      <Image source={Images.cafelatte} style={styles.logo} />
+                      <Image source={{ uri: item.img }} style={styles.logo} />
                     </CardItem>
                     <CardItem>
-                      <Body>
-                        <Text style={styles.namaMenu}>Coffee Latte</Text>
-                        <Text style={styles.hargaMenu}>Rp. 23.000</Text>
+                      <Left>
+                        <View>
+                          <Text style={styles.namaMenu}>{item.nama}</Text>
+                          <Text style={styles.hargaMenu}>{item.harga}</Text>
+                        </View>
+                      </Left>
+                      <Right>
                         <View style={styles.review}>
                           <Icon type='Entypo' name='star' style={styles.star} />
                           <Icon type='Entypo' name='star' style={styles.star} />
                           <Icon type='Entypo' name='star' style={styles.star} />
                           <Icon type='Entypo' name='star' style={styles.star} />
                         </View>
-                      </Body>
+                      </Right>
                     </CardItem>
                   </Card>
                 </TouchableHighlight>
-                <Card style={styles.card}>
-                  <CardItem cardBody>
-                    <Image source={Images.icechocolate} style={styles.logo} />
-                  </CardItem>
-                  <CardItem>
-                    <Body>
-                      <Text style={styles.namaMenu}>Ice Chocolate</Text>
-                      <Text style={styles.hargaMenu}>Rp. 26.000</Text>
-                      <View style={styles.review}>
-                        <Icon type='Entypo' name='star' style={styles.star} />
-                        <Icon type='Entypo' name='star' style={styles.star} />
-                        <Icon type='Entypo' name='star' style={styles.star} />
-                        <Icon type='Entypo' name='star' style={styles.star} />
-                      </View>
-                    </Body>
-                  </CardItem>
-                </Card>
-              </View>
-              <View style={styles.lineCard}>
-                <Card style={styles.card}>
-                  <CardItem cardBody>
-                    <Image source={Images.jusalpukat} style={styles.logo} />
-                  </CardItem>
-                  <CardItem>
-                    <Body>
-                      <Text style={styles.namaMenu}>Jus Alpukat</Text>
-                      <Text style={styles.hargaMenu}>Rp. 17.000</Text>
-                      <View style={styles.review}>
-                        <Icon type='Entypo' name='star' style={styles.star} />
-                        <Icon type='Entypo' name='star' style={styles.star} />
-                        <Icon type='Entypo' name='star' style={styles.star} />
-                        <Icon type='Entypo' name='star' style={styles.star} />
-                      </View>
-                    </Body>
-                  </CardItem>
-                </Card>
-                <Card style={styles.card}>
-                  <CardItem cardBody>
-                    <Image source={Images.lemontea} style={styles.logo} />
-                  </CardItem>
-                  <CardItem>
-                    <Body>
-                      <Text style={styles.namaMenu}>Lemon Tea</Text>
-                      <Text style={styles.hargaMenu}>Rp. 16.000</Text>
-                      <View style={styles.review}>
-                        <Icon type='Entypo' name='star' style={styles.star} />
-                        <Icon type='Entypo' name='star' style={styles.star} />
-                        <Icon type='Entypo' name='star' style={styles.star} />
-                        <Icon type='Entypo' name='star' style={styles.star} />
-                      </View>
-                    </Body>
-                  </CardItem>
-                </Card>
-              </View>
+              )}
+            />
             </View>
-          </ScrollView>
         </View>
       </View>
     )
