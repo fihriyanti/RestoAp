@@ -7,8 +7,8 @@ export default StyleSheet.create({
     flex: 1,
   },
   logo: {
-    height: Metrics.images.menu,
-    width: Metrics.images.menu,
+    height: 180,
+    width: 420,
     resizeMode: 'stretch',
   },
   header: {
@@ -29,22 +29,19 @@ export default StyleSheet.create({
     fontSize: 25,
     fontFamily: 'serif'
   },
-  lineCard: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingBottom: 10
-  },
   card: {
     borderRadius: 10,
+    marginBottom: 10,
   },
   cardItem: {
     backgroundColor: '#e0f2f1'
   },
   namaMenu: {
     fontWeight: 'bold',
-    fontSize: 17,
+    fontSize: 20,
   },
   hargaMenu: {
+    fontSize: 15,
     marginTop: 5,
   },
   review: {

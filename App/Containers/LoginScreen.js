@@ -119,7 +119,7 @@ export default class LoginScreen extends Component {
                 </Button>
                 <Text style={styles.txtAc}>Don't have a account?</Text>
                 <Button rounded bordered
-                  // onPress={() => this.props.navigation.navigate('PhoneAuth')}
+                  onPress={() => this.props.navigation.navigate('PhoneAuth')}
                   style={styles.btnSignUp}>
                   <Text style={styles.txtSignUp}>SIGN UP</Text>
                 </Button>

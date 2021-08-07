@@ -5,12 +5,10 @@ import { Images } from '../Themes'
 import firebase from 'firebase';
 
 // Styles
-import styles from './Styles/MenuMakananScreenStyles'
+import styles from './Styles/MenuMinumanScreenStyles'
 import { TouchableHighlight } from 'react-native-gesture-handler'
-import { ScrollView } from 'react-native'
 
 export default class MenuMinumanScreen extends Component {
-
 
   constructor() {
     super();
@@ -19,11 +17,6 @@ export default class MenuMinumanScreen extends Component {
       harga: '',
       img: '',
       list: []
-      //Phone Auth
-      // showModal: false,
-      // codeIsSent: false,
-      // confirmation: {},
-      // errorMessage: ''
     }
   }
 
@@ -44,12 +37,7 @@ export default class MenuMinumanScreen extends Component {
     } else {
       firebase.app()
     }
-    // firebase.database().ref('Menu/Makanan').on('value', datasnap => {
-    //   const gambar = datasnap.val();
-    //   this.setState({ gambar });
-    //   console.log(gambar);
 
-    // });
     firebase.database().ref('Menu/Minuman').on('value', (snapshot) => {
       var li = []
       snapshot.forEach((child) => {
@@ -82,13 +70,13 @@ export default class MenuMinumanScreen extends Component {
           </View>
             <View style={styles.body}>
             <FlatList
+              showsVerticalScrollIndicator={false}
               data={this.state.list}
               keyExtractor={(item) => item.key}
               renderItem={({ item }) => (
                 <TouchableHighlight
                   onPress={() => {
                     console.log(item.key, item.nama, item.harga, item.img)
-                    // this.btnAlert(item.key, item.nama, item.harga, item.img);
                     this.props.navigation.navigate('DetailsMenuScreen', {
                       paramkey : item.key, 
                       paramnama : item.nama, 
@@ -102,21 +90,21 @@ export default class MenuMinumanScreen extends Component {
                     <CardItem cardBody>
                       <Image source={{ uri: item.img }} style={styles.logo} />
                     </CardItem>
-                    <CardItem>
+                    <CardItem style={styles.cardItem}>
                       <Left>
                         <View>
                           <Text style={styles.namaMenu}>{item.nama}</Text>
-                          <Text style={styles.hargaMenu}>{item.harga}</Text>
+                          <Text style={styles.hargaMenu}>Rp. {item.harga}</Text>
                         </View>
                       </Left>
-                      <Right>
+                      {/* <Right>
                         <View style={styles.review}>
                           <Icon type='Entypo' name='star' style={styles.star} />
                           <Icon type='Entypo' name='star' style={styles.star} />
                           <Icon type='Entypo' name='star' style={styles.star} />
                           <Icon type='Entypo' name='star' style={styles.star} />
                         </View>
-                      </Right>
+                      </Right> */}
                     </CardItem>
                   </Card>
                 </TouchableHighlight>

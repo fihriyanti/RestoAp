@@ -9,7 +9,6 @@ export default StyleSheet.create({
   logo: {
     height: 180,
     width: 420,
-    // borderRadius: 10,
     resizeMode: 'stretch',
   },
   header: {

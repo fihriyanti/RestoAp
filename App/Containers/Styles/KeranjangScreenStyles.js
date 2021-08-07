@@ -42,22 +42,33 @@ export default StyleSheet.create({
   },
   namaMenu: {
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 18,
   },
   hargaMenu: {
     marginTop: 10,
-    fontSize: 18,
+    fontSize: 15,
   },
   jumlah: {
-    fontSize: 15,
+    fontSize: 20,
     alignSelf: 'center',
-    marginRight: 8,
+    marginHorizontal: 8,
     fontWeight:'bold'
   },
   btnJumlah: {
-    color: 'grey'
+    backgroundColor: 'grey',
+    width: 40,
+    height: 40,
+    borderRadius: 10,
+  },
+  PM : {
+    fontSize: 10,
+    color: 'white'
   },
   total: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
     backgroundColor: '#f5f5f5',
     padding: 20,
   },
