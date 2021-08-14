@@ -82,7 +82,8 @@ export default class MenuMakananScreen extends Component {
                       paramkey: item.key,
                       paramnama: item.nama,
                       paramharga: item.harga,
-                      paramimg: item.img
+                      paramimg: item.img,
+                      paramkey : item.key
                     })
                   }
                   }

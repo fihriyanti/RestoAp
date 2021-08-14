@@ -179,6 +179,12 @@ export default class ReservasiScreen extends Component {
                             />
                         </View>
                     </View>
+                    {/* <DateTimePickerModal
+                        isVisible={this.showDatePicker}
+                        mode="date"
+                    // onConfirm={console.log(time)}
+                    // onCancel={hideDatePicker}
+                    /> */}
                 </Modal>
                 <Modal transparent={true} visible={this.state.show1}>
                     {/* <View style={styles.bgModal}> */}

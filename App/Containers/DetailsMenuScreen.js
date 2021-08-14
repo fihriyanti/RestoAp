@@ -29,18 +29,76 @@ export default class DetailsMenuScreen extends Component {
     jumlahkan = () => {
     }
 
+    updateMenu = () => {
+    }
+
+    updateHarga(id, jml) {
+
+    }
+
     tambaMenu = () => {
-        var jumlah = this.state.count * this.props.navigation.getParam('paramharga');
-        console.log(jumlah)
-        const Keranjang = firebase.database().ref("Keranjang/");
-        Keranjang.push({      
-            img : this.props.navigation.getParam('paramimg'),      
-            nama: this.props.navigation.getParam('paramnama'),
-            harga : this.props.navigation.getParam('paramharga'),
-            banyak : this.state.count,
-            perjumlah : jumlah,
-        })
-        this.props.navigation.navigate('MenuTabNav')
+        const user = firebase.auth().currentUser;
+        firebase.database()
+            .ref("Keranjang/" + user.uid)
+            .orderByChild("keymenu")
+            .equalTo(this.props.navigation.getParam('paramkey'))
+            .once("value")
+            .then(snapshot => {
+                if (snapshot.val()) {
+                    var jumlah = this.state.count * this.props.navigation.getParam('paramharga');
+                    var banyak = this.state.count;
+                    // console.log(snapshot)
+                    // const obj = JSON.parse(snapshot.val());
+                    // console.log(obj.nama)
+                    console.log("ada data")
+
+                    // console.log(snapshot.child("Keranjang/" + user.uid + "/").key)
+
+                    snapshot.forEach(function (childSnapshot) {
+                        // key will be "ada" the first time and "alan" the second time
+                        var key = childSnapshot.key;
+                        // childData will be the actual contents of the child
+                        console.log(key)
+                        var update_keranjang = firebase.database().ref("Keranjang/" + user.uid + "/" + key);
+                        update_keranjang.update(
+                            {
+                                banyak: banyak,
+                                perjumlah: jumlah
+                            });
+
+                        // var banyak_now = childSnapshot.val().banyak;   
+                    });
+                    console.log("Updated !!!")
+                    // this.updateHarga(key, banyak_now);
+                    this.props.navigation.navigate('MenuTabNav')
+                } else {
+                    var jumlah = this.state.count * this.props.navigation.getParam('paramharga');
+                    // console.log(jumlah)
+                    const Keranjang = firebase.database().ref("Keranjang/" + user.uid);
+                    Keranjang.push({
+                        keymenu: this.props.navigation.getParam('paramkey'),
+                        img: this.props.navigation.getParam('paramimg'),
+                        nama: this.props.navigation.getParam('paramnama'),
+                        harga: this.props.navigation.getParam('paramharga'),
+                        banyak: this.state.count,
+                        perjumlah: jumlah,
+                    })
+                    this.props.navigation.navigate('MenuTabNav')
+                }
+            })
+
+        // var jumlah = this.state.count * this.props.navigation.getParam('paramharga');
+        // console.log(jumlah)
+        // const Keranjang = firebase.database().ref("Keranjang/" + user.uid);
+        // Keranjang.push({
+        //     keymenu : this.props.navigation.getParam('paramkey'),        
+        //     img : this.props.navigation.getParam('paramimg'),      
+        //     nama: this.props.navigation.getParam('paramnama'),
+        //     harga : this.props.navigation.getParam('paramharga'),
+        //     banyak : this.state.count,
+        //     perjumlah : jumlah,
+        // })
+        // this.props.navigation.navigate('MenuTabNav')
     }
 
     render() {
@@ -72,12 +130,6 @@ export default class DetailsMenuScreen extends Component {
                                 <View>
                                     <Text style={styles.namaMenu}>{this.props.navigation.getParam('paramnama')}</Text>
                                     <Text style={styles.hargaMenu}>Rp. {this.props.navigation.getParam('paramharga')}</Text>
-                                    {/* <View style={styles.review}>
-                                        <Icon type='Entypo' name='star' style={styles.star} />
-                                        <Icon type='Entypo' name='star' style={styles.star} />
-                                        <Icon type='Entypo' name='star' style={styles.star} />
-                                        <Icon type='Entypo' name='star' style={styles.star} />
-                                    </View> */}
                                 </View>
                                 <View style={styles.tambah}>
                                     <View style={{ flexDirection: 'row' }}>
@@ -108,7 +160,7 @@ export default class DetailsMenuScreen extends Component {
                         // this.props.navigation.getParam('paramnama')
                         // this.props.navigation.getParam('paramharga')
                     }
-                    // }
+                // }
                 >
                     <Icon style={styles.back} type='FontAwesome5' name='cart-plus' />
                 </Button>

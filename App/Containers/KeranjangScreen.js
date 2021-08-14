@@ -8,27 +8,26 @@ import firebase from 'firebase'
 import styles from './Styles/KeranjangScreenStyles'
 
 export default class KeranjangScreen extends Component {
-
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       count: 0,
       jumlah: 0,
       cart: [],
-      total: 0,
+      total: 0
     }
   }
 
   componentDidMount() {
     this.total();
+      
+    const user = firebase.auth().currentUser
 
     // const tampil = firebase.database().ref('Keranjang/01')
     // tampil.on('value', datasnap=>{
     //   console.log(datasnap.val())
     // })
-    firebase.database().ref('Keranjang').on('value', (snapshot) => {
-      
-      const user = firebase.auth().currentUser
+    firebase.database().ref('Keranjang/' + user.uid).on('value', (snapshot) => {
       var li = []
       var totalsemua = 0
       snapshot.forEach((child) => {
@@ -51,25 +50,49 @@ export default class KeranjangScreen extends Component {
     // this.intervalID = setInterval(this.total.bind(this), 5000);
   }
 
-  // componentWillUnmount(){
-  //   clearInterval(this.intervalID);
-  // }
+  tambahJumlah(key,  hrg, jml){
+    const user = firebase.auth().currentUser;
+    // console.log(this.state.count);
+    var jumlah_brg = jml + 1;
+    // this.setState({ count: jumlah_brg });
+    // var harga_brg = hrg;
+
+    var total = jumlah_brg * hrg;
+    var update_keranjang = firebase.database().ref("Keranjang/" + user.uid + "/" + key);
+    update_keranjang.update(
+        {
+            banyak: jumlah_brg,
+            perjumlah: total
+        });
+    console.log(total);
+  }
+  
+  kurangJumlah(key,  hrg, jml){
+    const user = firebase.auth().currentUser;
+    var jumlah_brg = jml - 1;
+    if (jumlah_brg <= 0) {
+      var update_keranjang = firebase.database().ref("Keranjang/" + user.uid + "/" + key);
+      update_keranjang.remove().
+      then(function() {
+        console.log("Remove succeeded.")
+      })
+      console.log(total);
+    } else {
+      var total = jumlah_brg * hrg;
+      var update_keranjang = firebase.database().ref("Keranjang/" + user.uid + "/" + key);
+      update_keranjang.update(
+          {
+              banyak: jumlah_brg,
+              perjumlah: total
+          });
+      console.log(total);
+
+    }
+  }
 
   total = () => {
     this.setState({ count: this.props.navigation.getParam('banyak') });
     this.setState({ jumlah: this.props.navigation.getParam('banyak') * this.props.navigation.getParam('harga') });
-  }
-
-  tambahJumlah = () => {
-    this.setState({ count: this.state.count + 1 })
-    this.setState({ jumlah: this.state.count * this.props.navigation.getParam('harga') });
-  }
-  kurangJumlah = () => {
-    if (this.state.count <= 0) {
-      this.state.count = 1
-    }
-    this.setState({ count: this.state.count - 1 })
-    this.setState({ jumlah: this.state.count * this.props.navigation.getParam('harga') });
   }
 
   render() {
@@ -99,16 +122,19 @@ export default class KeranjangScreen extends Component {
                           <Text style={styles.hargaMenu}>Rp. {item.harga}</Text>
                           <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 10 }}>
                             <View style={{ flexDirection: 'row' }}>
+
                               <Button style={styles.btnJumlah}
-                                onPress={this.kurangJumlah}
+                                onPress={()=>this.kurangJumlah(item.key, item.harga, item.banyak)}
                               >
                                 <Icon style={styles.PM} type='FontAwesome5' name='minus' />
                               </Button>
+
                               <Button transparent>
                                 <Text style={styles.jumlah}>{item.banyak}</Text>
                               </Button>
+
                               <Button style={styles.btnJumlah}
-                                onPress={this.tambahJumlah}
+                                onPress={()=>this.tambahJumlah(item.key, item.harga, item.banyak)}
                               >
                                 <Icon style={styles.PM} type='FontAwesome5' name='plus' />
                               </Button>
@@ -128,7 +154,7 @@ export default class KeranjangScreen extends Component {
               <Text style={styles.txtTotal}>Total : </Text>
               <Text style={styles.txtTotal}>Rp. {this.state.total}</Text>
             </View>
-            <Button full style={styles.btnPesan}>
+            <Button full style={styles.btnPesan}> 
               <Text style={styles.txtBtnPesan}>PESAN</Text>
             </Button>
           </View>
