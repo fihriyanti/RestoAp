@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
-import { Image, View, Text, Modal } from 'react-native'
+import { Image, View, Text, Modal, TouchableOpacity } from 'react-native'
 import { Button, Card, CardItem, Right, Icon, Left, Body, List, ListItem, Textarea, Form } from 'native-base'
 import { Images } from '../Themes'
 import { Calendar } from 'react-native-calendars'
-import DateTimePickerModal from 'react-native-modal-datetime-picker'
+import TimePicker from "react-native-24h-timepicker";
 
 // Styles
 import styles from './Styles/ReservasiScreenStyles'
 import { ScrollView } from 'react-native'
 
 export default class ReservasiScreen extends Component {
+
+
     constructor(props) {
         super(props);
         this.state = {
@@ -23,6 +25,8 @@ export default class ReservasiScreen extends Component {
             bulan: "",
             tahun: "",
 
+            time: "",
+
             selectedStartDate: null,
         };
         this.onDateChange = this.onDateChange.bind(this);
@@ -34,11 +38,6 @@ export default class ReservasiScreen extends Component {
 
     hideDatePicker = () => {
         setDatePickerVisibility(false)
-    }
-
-    handleConfirm = (time) => {
-        console.warn("A time has been picked: ", time);
-        hideDatePicker();
     }
 
     onDateChange(date) {
@@ -57,8 +56,16 @@ export default class ReservasiScreen extends Component {
         this.setState({ jumlah: this.state.jumlah - 1 })
     }
 
-    render() {
+    onCancel() {
+        this.TimePicker.close();
+    }
 
+    onConfirm(hour, minute) {
+        this.setState({ time: `${hour}:${minute}` });
+        this.TimePicker.close();
+    }
+
+    render() {
         return (
             <View style={styles.mainContainer}>
                 <View style={styles.container}>
@@ -98,12 +105,22 @@ export default class ReservasiScreen extends Component {
                                                 <Text style={styles.txtCard}>Time</Text>
                                             </Left>
                                             <Body>
-                                                <Text style={styles.txtCard}>: Waktu</Text>
+                                                <Text style={styles.txtCard}>: {this.state.time}</Text>
                                             </Body>
                                             <Right>
                                                 <Icon
-                                                    onPress={() => this.setState({ show1: true })}
+                                                    onPress={() => this.TimePicker.open()}
                                                     style={styles.icon} type='AntDesign' name='clockcircleo' />
+                                                <TimePicker
+                                                    ref={ref => {
+                                                        this.TimePicker = ref;
+                                                    }}
+                                                    maxHour={16}
+                                                    // hourUnit="0"
+                                                    selectedHour="8"
+                                                    onCancel={() => this.onCancel()}
+                                                    onConfirm={(hour, minute) => this.onConfirm(hour, minute)}
+                                                />
                                             </Right>
                                         </CardItem>
                                     </ListItem>
@@ -179,27 +196,6 @@ export default class ReservasiScreen extends Component {
                             />
                         </View>
                     </View>
-                    {/* <DateTimePickerModal
-                        isVisible={this.showDatePicker}
-                        mode="date"
-                    // onConfirm={console.log(time)}
-                    // onCancel={hideDatePicker}
-                    /> */}
-                </Modal>
-                <Modal transparent={true} visible={this.state.show1}>
-                    {/* <View style={styles.bgModal}> */}
-                    {/* <View style={styles.modal}> */}
-                    <DateTimePickerModal
-                        isVisible={this.showDatePicker}
-                        mode="time"
-                    // onConfirm={console.log(time)}
-                    // onCancel={hideDatePicker}
-                    />
-                    {/* <Button onPress={() => this.setState({ show1: false })}>
-                                <Text>OK</Text>
-                            </Button> */}
-                    {/* </View> */}
-                    {/* </View> */}
                 </Modal>
                 <Modal transparent={true} visible={this.state.show3}>
                     <View style={styles.bgModal}>

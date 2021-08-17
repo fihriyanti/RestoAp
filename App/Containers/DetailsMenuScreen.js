@@ -86,19 +86,6 @@ export default class DetailsMenuScreen extends Component {
                     this.props.navigation.navigate('MenuTabNav')
                 }
             })
-
-        // var jumlah = this.state.count * this.props.navigation.getParam('paramharga');
-        // console.log(jumlah)
-        // const Keranjang = firebase.database().ref("Keranjang/" + user.uid);
-        // Keranjang.push({
-        //     keymenu : this.props.navigation.getParam('paramkey'),        
-        //     img : this.props.navigation.getParam('paramimg'),      
-        //     nama: this.props.navigation.getParam('paramnama'),
-        //     harga : this.props.navigation.getParam('paramharga'),
-        //     banyak : this.state.count,
-        //     perjumlah : jumlah,
-        // })
-        // this.props.navigation.navigate('MenuTabNav')
     }
 
     render() {
@@ -153,14 +140,7 @@ export default class DetailsMenuScreen extends Component {
                     </View>
                 </View>
                 <Button full style={styles.btnCart}
-                    onPress={this.tambaMenu
-                        // this.tambahMenu
-                        // console.log(nama=this.props.navigation.getParam('paramnama'), this.props.navigation.getParam('paramimg'), this.props.navigation.getParam('paramharga'), this.state.count)
-                        // this.props.navigation.getParam('paramimg')
-                        // this.props.navigation.getParam('paramnama')
-                        // this.props.navigation.getParam('paramharga')
-                    }
-                // }
+                    onPress={this.tambaMenu}
                 >
                     <Icon style={styles.back} type='FontAwesome5' name='cart-plus' />
                 </Button>
