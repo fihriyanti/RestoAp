@@ -53,7 +53,8 @@ export default StyleSheet.create({
         fontWeight: 'bold'
     },
     card: {
-        borderRadius: 10
+        borderRadius: 10,
+        marginVertical: 20,
     },
     txtCard: {
         fontWeight: 'bold',
@@ -63,6 +64,12 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 20,
         paddingHorizontal: 5
+    },
+    txtCard2: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        paddingHorizontal: 5,
+        paddingVertical: 8
     },
     icon: {
         color: '#1565c0',

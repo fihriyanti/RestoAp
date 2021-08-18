@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
-import { Image, View, Text, Modal, TouchableOpacity } from 'react-native'
-import { Button, Card, CardItem, Right, Icon, Left, Body, List, ListItem, Textarea, Form } from 'native-base'
+import { Image, View, Text, Modal } from 'react-native'
+import { Button, Card, CardItem, Right, Icon, Left, Body, List, ListItem, Textarea, Input } from 'native-base'
 import { Images } from '../Themes'
 import { Calendar } from 'react-native-calendars'
-import TimePicker from "react-native-24h-timepicker";
+import TimePicker from "react-native-24h-timepicker"
+import SelectDropdown from 'react-native-select-dropdown'
 
 // Styles
 import styles from './Styles/ReservasiScreenStyles'
 import { ScrollView } from 'react-native'
 
-export default class ReservasiScreen extends Component {
+const reservasi = ['Makan Siang', 'Ulang Tahun', 'Pertemuan', 'Acara Keluarga', 'Rapat']
 
+export default class ReservasiScreen extends Component {
 
     constructor(props) {
         super(props);
@@ -61,7 +63,14 @@ export default class ReservasiScreen extends Component {
     }
 
     onConfirm(hour, minute) {
-        this.setState({ time: `${hour}:${minute}` });
+        if (hour < 8) {
+            alert("Jam Buka hanya antara 08 - 16 WITA")
+        } else {
+            if (hour <= 9) {
+                hour = "0" + hour;
+            }
+            this.setState({ time: `${hour}:${minute}` });
+        }
         this.TimePicker.close();
     }
 
@@ -85,9 +94,41 @@ export default class ReservasiScreen extends Component {
                             <Card style={styles.card}>
                                 <List>
                                     <ListItem>
+                                        <SelectDropdown
+                                            data={reservasi}
+                                            onSelect={(selectedItem, index) => {
+                                                console.log(selectedItem, index)
+                                            }}
+                                            buttonTextAfterSelection={(selectedItem, index) => {
+                                                // text represented after item is selected
+                                                // if data array is an array of objects then return selectedItem.property to render after item is selected
+                                                return selectedItem
+                                            }}
+                                            rowTextForSelection={(item, index) => {
+                                                // text represented for each item in dropdown
+                                                // if data array is an array of objects then return item.property to represent item in dropdown
+                                                return item
+                                            }}
+                                        />
+                                    </ListItem>
+                                    <ListItem>
                                         <CardItem>
                                             <Left>
-                                                <Text style={styles.txtCard}>Date</Text>
+                                                <Text style={styles.txtCard}>Nama</Text>
+                                            </Left>
+                                            <Body>
+                                                <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+                                                    <Text style={styles.txtCard2}>: </Text>
+                                                    <Input style={{ borderColor: 'grey' }} placeholder='Nama Pelanggan' />
+                                                </View>
+                                            </Body>
+                                            <Right />
+                                        </CardItem>
+                                    </ListItem>
+                                    <ListItem>
+                                        <CardItem>
+                                            <Left>
+                                                <Text style={styles.txtCard}>Tanggal</Text>
                                             </Left>
                                             <Body>
                                                 <Text style={styles.txtCard}>: {this.state.hari}-{this.state.bulan}-{this.state.tahun}</Text>
@@ -102,7 +143,7 @@ export default class ReservasiScreen extends Component {
                                     <ListItem>
                                         <CardItem>
                                             <Left>
-                                                <Text style={styles.txtCard}>Time</Text>
+                                                <Text style={styles.txtCard}>Waktu</Text>
                                             </Left>
                                             <Body>
                                                 <Text style={styles.txtCard}>: {this.state.time}</Text>
@@ -116,7 +157,6 @@ export default class ReservasiScreen extends Component {
                                                         this.TimePicker = ref;
                                                     }}
                                                     maxHour={16}
-                                                    // hourUnit="0"
                                                     selectedHour="8"
                                                     onCancel={() => this.onCancel()}
                                                     onConfirm={(hour, minute) => this.onConfirm(hour, minute)}
@@ -127,25 +167,19 @@ export default class ReservasiScreen extends Component {
                                     <ListItem>
                                         <CardItem>
                                             <Left>
-                                                <Text style={styles.txtCard}>Customer</Text>
+                                                <Text style={styles.txtCard}>Pelanggan</Text>
                                             </Left>
                                             <Body>
-                                                <Text style={styles.txtCard1}>: {this.state.jumlah}</Text>
-                                            </Body>
-                                            <Right>
-                                                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                                                    <Icon style={styles.icon}
-                                                        onPress={this.kurangJumlah}
-                                                        type='AntDesign' name='minuscircleo' />
-                                                    <Text style={styles.txtCard1}></Text>
-                                                    <Icon style={styles.icon}
-                                                        onPress={this.tambahJumlah}
-                                                        type='AntDesign' name='pluscircleo' />
+                                                <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+                                                    <Text style={styles.txtCard2}>: </Text>
+                                                    <Input style={{ borderColor: 'grey' }} placeholder='Jumlah Pelanggan' />
                                                 </View>
-                                            </Right>
+                                            </Body>
+                                            <Right />
                                         </CardItem>
                                     </ListItem>
-                                    <ListItem>
+
+                                    {/* <ListItem>
                                         <CardItem>
                                             <Left>
                                                 <Text style={styles.txtCard}>No Meja</Text>
@@ -161,6 +195,22 @@ export default class ReservasiScreen extends Component {
                                                     Lihat Meja
                                                 </Text>
                                             </Right>
+                                        </CardItem>
+                                    </ListItem> */}
+                                    <ListItem>
+                                        <CardItem>
+                                            <Left>
+                                                <Text style={styles.txtCard}>Keterangan </Text>
+                                            </Left>
+                                            <Body>
+                                                <Text style={styles.txtCard2}>: </Text>
+                                            </Body>
+                                            <Right />
+                                        </CardItem>
+                                    </ListItem>
+                                    <ListItem>
+                                        <CardItem>
+                                            <Textarea h={20} placeholder='Arisan, Kumpul Keluarga, Ulang Tahun, dll' />
                                         </CardItem>
                                     </ListItem>
                                 </List>
@@ -201,6 +251,11 @@ export default class ReservasiScreen extends Component {
                     <View style={styles.bgModal}>
                         <View style={styles.modal}>
                             <Text>Pilih Meja</Text>
+                            <Button
+                                onPress={() => this.setState({ show3: false })}
+                            >
+                                <Text>OK</Text>
+                            </Button>
                         </View>
                     </View>
                 </Modal>
