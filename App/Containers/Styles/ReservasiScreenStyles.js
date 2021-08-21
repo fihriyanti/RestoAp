@@ -5,10 +5,11 @@ export default StyleSheet.create({
     ...ApplicationStyles.screen,
     container: {
         flex: 1,
+        backgroundColor: 'white'
     },
     logo: {
-        height: Metrics.images.ikon,
-        width: Metrics.images.ikon,
+        height: Metrics.images.profile,
+        width: Metrics.images.profile,
         resizeMode: 'contain'
     },
     centered: {
@@ -30,7 +31,7 @@ export default StyleSheet.create({
     txtTitle: {
         marginTop: 10,
         color: 'white',
-        fontSize: 25,
+        fontSize: 23,
         fontWeight: 'bold'
     },
     footer: {
@@ -54,20 +55,19 @@ export default StyleSheet.create({
     },
     card: {
         borderRadius: 10,
-        marginVertical: 20,
     },
     txtCard: {
         fontWeight: 'bold',
-        fontSize: 18
+        fontSize: 12
     },
     txtCard1: {
         fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: 15,
         paddingHorizontal: 5
     },
     txtCard2: {
         fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: 15,
         paddingHorizontal: 5,
         paddingVertical: 8
     },
