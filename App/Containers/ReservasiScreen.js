@@ -4,6 +4,8 @@ import { Button, Card, CardItem, Right, Icon, Left, Body, List, ListItem, Textar
 import { Images } from '../Themes'
 import { Calendar } from 'react-native-calendars'
 import TimePicker from "react-native-24h-timepicker"
+import moment from "moment"
+import firebase from 'firebase'
 // import CountDown from "react-native-countdown-component"
 // import SelectDropdown from 'react-native-select-dropdown'
 import { Dropdown } from 'react-native-material-dropdown';
@@ -80,13 +82,33 @@ export default class ReservasiScreen extends Component {
         this.TimePicker.close();
     }
 
-    btnReservasi = () =>{
+    btnReservasi = () => {
         var waktu = this.state.time;
         var tanggal = this.state.hari + "-" + this.state.bulan + "-" + this.state.tahun;
-        var nama  = this.state.nama;
+        var nama = this.state.nama;
         var jumlah = this.state.jmlpelanggan;
 
+        var date_now = moment().utcOffset('+08:00').format(' YYYY-MM-DD HH:mm:ss');
+        var date_exp = moment().add(2, 'hours').utcOffset('+08:00').format(' YYYY-MM-DD HH:mm:ss');
+
+        var differ = moment
+            .duration(moment(date_exp)
+                .diff(moment(date_now)));
+        // Difference of the expiry date-time
+        var hours = parseInt(differ.asHours());
+        var minutes = parseInt(differ.minutes());
+        var seconds = parseInt(differ.seconds());
+
+        // Converting in seconds
+        var d = hours * 60 * 60 + minutes * 60 + seconds;
+
+        // var hari_ini = new Date().getDate() + "-" + new Date().getMonth() + "-" + new Date().getFullYear();
+        // var jam_ini = new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds();
+
         console.log(nama + ", " + jumlah + ", " + tanggal + ", " + waktu)
+        console.log(date_now)
+        console.log(date_exp)
+        // console.log(jam_ini)
 
         // console.log(jumlah)
         const user = firebase.auth().currentUser;
@@ -94,11 +116,17 @@ export default class ReservasiScreen extends Component {
         Reservasi.push({
             waktu: waktu,
             tanggal: tanggal,
+            waktu_pesan: date_now,
+            waktu_bayar: date_exp,
             nama: nama,
             jumlah: jumlah,
-            status: "belum bayar"
+            waktu_pesan: date_now,
+            waktu_bayar: date_exp,
+            duration: d,
+            userid: user.uid,
+            status: "Belum Bayar"
         })
-        this.props.navigation.navigate('MenuTabNav')
+        this.props.navigation.navigate('CountDownScreen')
     }
 
     render() {
@@ -200,7 +228,7 @@ export default class ReservasiScreen extends Component {
                                         <Body>
                                             <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
                                                 <Text style={styles.txtCard2}>: </Text>
-                                                <Input style={{ borderColor: 'grey', fontSize: 12 }}  onChangeText={jmlpelanggan => this.setState({ jmlpelanggan })} placeholder='Jumlah Pelanggan' keyboardType='number-pad' />
+                                                <Input style={{ borderColor: 'grey', fontSize: 12 }} onChangeText={jmlpelanggan => this.setState({ jmlpelanggan })} placeholder='Jumlah Pelanggan' keyboardType='number-pad' />
                                             </View>
                                         </Body>
                                         <Right />

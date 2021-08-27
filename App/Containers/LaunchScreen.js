@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Image } from 'react-native'
 import { Images } from '../Themes'
+import firebase from 'firebase'
 
 
 // Styles

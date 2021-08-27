@@ -43,6 +43,27 @@ export default function SignUpScreen(props) {
                   onChangeText={setPhoneNumber}
                 />
               </Item>
+              {/* <Text style={styles.label}>Username</Text>
+              <Item inlineLabel style={styles.item1}>
+                <Icon type='FontAwesome' name='user-o' />
+                <Input placeholder='Your Username' style={styles.input} />
+              </Item> */}
+              {/* <Text style={styles.label}>Password</Text>
+              <Item inlineLabel style={styles.item1}>
+                <Icon type='SimpleLineIcons' name='lock' />
+                {this.state.secureTextEntry ?
+                  <Input secureTextEntry={true} placeholder='Your Password' style={styles.input} onChangeText={password => this.setState({ password })} />
+                  :
+                  <Input placeholder='Your Password' style={styles.input} onChangeText={password => this.setState({ password })} />
+                }
+                <TouchableOpacity onPress={() => this.secureTextEntry()}>
+                  {this.state.secureTextEntry ?
+                    <Icon type='Ionicons' name='eye-off-outline' />
+                    :
+                    <Icon type='Ionicons' name='eye-outline' />
+                  }
+                </TouchableOpacity>
+              </Item> */}
               <Button rounded
                 onPress={() => props.onSubmit(phoneNumber)}
                 style={styles.btnSign}>

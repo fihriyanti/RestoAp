@@ -21,6 +21,7 @@
     "@react-navigation/native": "^5.9.4",
     "@sorakrisc/react-native-datetimepicker": "^1.0.12",
     "firebase": "^8.6.7",
+    "moment": "^2.29.1",
     "native-base": "^2.15.2",
     "react": "17.0.1",
     "react-native": "0.64.1",

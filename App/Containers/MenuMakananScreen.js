@@ -21,22 +21,6 @@ export default class MenuMakananScreen extends Component {
   }
 
   componentDidMount() {
-    const firebaseConfig = {
-      apiKey: "AIzaSyCD0uUL812u98r3LSsLfx60_BiJEEhnHM4",
-      authDomain: "d-fasto.firebaseapp.com",
-      databaseURL: "https://d-fasto-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "d-fasto",
-      storageBucket: "d-fasto.appspot.com",
-      messagingSenderId: "888195449280",
-      appId: "1:888195449280:web:b838a6deaac9fd26c8c825",
-      measurementId: "G-JGQ4DRP757"
-    };
-    if (!firebase.apps.length) {
-      firebase.initializeApp(firebaseConfig);
-      firebase.analytics();
-    } else {
-      firebase.app()
-    }
 
     firebase.database().ref('Menu/Makanan').on('value', (snapshot) => {
       var li = []

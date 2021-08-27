@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Image, View, Text } from 'react-native'
 import { Button, Icon, Thumbnail, List, ListItem, Left, Right } from 'native-base'
 import { Images } from '../Themes'
-import auth from '@react-native-firebase/auth'
+// import auth from '@react-native-firebase/auth'
+import firebase from 'firebase'
 
 // Styles
 import styles from './Styles/AkunScreenStyles'
@@ -33,7 +34,9 @@ export default class AkunScreen extends Component {
   // }
   
   signoutuser = () =>{
-    auth().signOut().then(this.props.navigation.navigate('LoginScreen'))
+    // auth().signOut().then(this.props.navigation.navigate('LoginScreen'))
+    firebase.auth().signOut().then(this.props.navigation.navigate('LoginScreen'))
+    console.log('logout berhasil')
   }
   render() {
     return (
@@ -57,13 +60,13 @@ export default class AkunScreen extends Component {
                   <Left>
                     <Text style={styles.txtLeft}>Nama</Text>
                   </Left>
-                  <Text style={styles.txtRight}>Akun Saya</Text>
+                  <Text style={styles.txtRight}>{firebase.auth().currentUser.displayName}</Text>
                 </ListItem>
                 <ListItem>
                   <Left>
                     <Text style={styles.txtLeft}>No. HP</Text>
                   </Left>
-                  <Text style={styles.txtRight}>081234567890</Text>
+                  <Text style={styles.txtRight}>{firebase.auth().currentUser.email}</Text>
                 </ListItem>
                 <ListItem>
                   <Left>

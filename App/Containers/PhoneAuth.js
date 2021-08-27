@@ -3,7 +3,6 @@ import auth from '@react-native-firebase/auth';
 import SignUpScreen from './SignUpScreen';
 import VerifyCodeScreen from './VerifyCodeScreen';
 import Authenticated from './BerandaTabNav';
-import LoginScreen from './LoginScreen';
 
 export default function PhoneAuth() {
   const [confirm, setConfirm] = useState(null);
@@ -40,8 +39,6 @@ export default function PhoneAuth() {
   })
 
   if (authenticated) return <Authenticated />;
-
-  // if (!authenticated) return <LoginScreen />;
 
   if (confirm) return <VerifyCodeScreen onSubmit={confirmVerificationCode} />;
 

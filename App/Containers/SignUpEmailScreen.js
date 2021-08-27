@@ -8,11 +8,12 @@ import { Images } from '../Themes'
 import * as Animatable from 'react-native-animatable';
 
 // Styles
-import styles from './Styles/LoginScreenStyles'
+import styles from './Styles/SignUpEmailScreenStyles'
 import { TouchableOpacity } from 'react-native'
 
-export default class LoginScreen extends Component {
+export default class SignUpEmailScreen extends Component {
   state = {
+    email: '',
     username: '',
     password: '',
     secureTextEntry: true
@@ -43,37 +44,16 @@ export default class LoginScreen extends Component {
     else {
       firebase.app();
     }
-
-    firebase.auth().onAuthStateChanged(user => {
-      if (user.emailVerified == true) {
-        console.log(user.emailVerified)
-        this.props.navigation.navigate("BerandaTabNav")
-      } else {
-        console.log("Invalid User")
-        alert("Please verify your email")
-      }
-    });
   }
 
   onPressLogin = () => {
-    // firebase.auth().signInWithEmailAndPassword(this.state.username, this.state.password).
-    //   then(this.onLoginSuccess).catch(error => {
-    //     alert("Invalid Email or Password")
-    //   })
-    firebase.auth().signInWithEmailAndPassword(this.state.username, this.state.password).
-      then(this.onLoginSuccess).catch(error => {
-        alert("Invalid Email or Password")
+    firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).
+      then((userCredential) => {
+        userCredential.user.sendEmailVerification()
+        this.props.navigation.navigate("LoginScreen")
+      }).catch(error => {
+        alert("Gagal membuat akun anda")
       })
-    // var phone_number = '+62' + this.state.username
-    // console.log(phone_number)
-    // auth().signInWithPhoneNumber(phone_number).
-    //   then(this.onLoginSuccess).catch(error => {
-    //     alert("Invalid Email or Password")
-    //   })
-  }
-
-  onLoginSuccess = () => {
-    this.props.navigation.navigate("BerandaTabNav")
   }
 
   render() {
@@ -89,7 +69,7 @@ export default class LoginScreen extends Component {
             animation='fadeInUpBig'
             style={styles.footer}>
             <ScrollView>
-              <Text style={styles.header}>SIGN IN</Text>
+              <Text style={styles.header}>SIGN UP</Text>
               <View style={styles.form}>
                 {/* <Text style={styles.label}>Phone Number</Text>
                 <Item inlineLabel style={styles.item1}>
@@ -97,10 +77,10 @@ export default class LoginScreen extends Component {
                   <Label>+62</Label>
                   <Input placeholder='Enter Your Phone Number' style={styles.input} onChangeText={username => this.setState({ username })} />
                 </Item> */}
-                <Text style={styles.label}>Username</Text>
+                <Text style={styles.label}>Email</Text>
                 <Item inlineLabel style={styles.item1}>
-                  <Icon type='FontAwesome' name='user-o' />
-                  <Input placeholder='Your Username' style={styles.input} onChangeText={username => this.setState({ username })} />
+                  <Icon type='Fontisto' name='email' />
+                  <Input placeholder='Your Email' style={styles.input} onChangeText={email => this.setState({ email })} />
                 </Item>
                 <Text style={styles.label}>Password</Text>
                 <Item inlineLabel style={styles.item1}>
@@ -118,16 +98,16 @@ export default class LoginScreen extends Component {
                     }
                   </TouchableOpacity>
                 </Item>
-                <Button rounded
-                  onPress={this.onPressLogin}
-                  style={styles.btnSign}>
-                  <Text style={styles.txtSign}>SIGN IN</Text>
-                </Button>
-                <Text style={styles.txtAc}>Don't have a account?</Text>
                 <Button rounded bordered
-                  onPress={() => this.props.navigation.navigate('SignUpEmailScreen')}
+                  onPress={this.onPressLogin}
                   style={styles.btnSignUp}>
                   <Text style={styles.txtSignUp}>SIGN UP</Text>
+                </Button>
+                <Text style={styles.txtAc}>Have an account?</Text>
+                <Button rounded
+                  onPress={() => this.props.navigation.navigate('LoginScreen')}
+                  style={styles.btnSign}>
+                  <Text style={styles.txtSign}>SIGN IN</Text>
                 </Button>
               </View>
             </ScrollView>

@@ -11,6 +11,8 @@ import MenuTabNav from './App/Containers/MenuTabNav'
 import EditAkunScreen from './App/Containers/EditAkunScreen'
 import KeranjangScreen from './App/Containers/KeranjangScreen'
 import PhoneAuth from './App/Containers/PhoneAuth'
+import CountDown from './App/Containers/CountDownScreen'
+import SignUpEmailScreen from './App/Containers/SignUpEmailScreen'
 
 import styles from './App/NavigationStyles'
 
@@ -18,10 +20,12 @@ const PrimaryNav = createStackNavigator({
   LaunchScreen: { screen: LaunchScreen },
   LoginScreen: { screen: LoginScreen },
   SignUpScreen: { screen: SignUpScreen },
+  SignUpEmailScreen: { screen: SignUpEmailScreen },
   // VerifyCodeScreen: { screen: VerifyCodeScreen },
   BerandaTabNav: { screen: BerandaTabNav },
   DetailsMenuScreen: { screen: DetailsMenuScreen },
   ReservasiScreen: { screen: ReservasiScreen },
+  CountDownScreen: { screen: CountDown },
   MenuTabNav: { screen : MenuTabNav },
   EditAkunScreen: { screen : EditAkunScreen },
   KeranjangScreen: { screen : KeranjangScreen },
